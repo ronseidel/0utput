@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en" style="background:#F9F9F9;color:#034D32;">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#F9F9F9" />
+  <title>0utput — a family of small, focused apps</title>
+
+  <!-- Description -->
+  <meta name="description" content="0utput is a growing family of small, focused apps. Every name drops a letter for a zero. Built by Ron Seidel." />
+
+  <!-- Favicon (Space Mono dotted zero, 0fam brand mark) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='rgb(3,77,50)'/><ellipse cx='16' cy='16' rx='6' ry='8' fill='none' stroke='rgb(249,249,249)' stroke-width='3'/><circle cx='16' cy='16' r='1.4' fill='rgb(249,249,249)'/></svg>" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://0utput.co" />
+  <meta property="og:title" content="0utput — a family of small, focused apps" />
+  <meta property="og:description" content="A growing family of small, focused apps. Every name drops a letter for a zero." />
+  <meta property="og:image" content="https://0utput.co/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="0utput" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="0utput — a family of small, focused apps" />
+  <meta name="twitter:description" content="Every name drops a letter for a zero." />
+  <meta name="twitter:image" content="https://0utput.co/og-image.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================================================
+       0utput — a family of small, focused apps (the 0fam)
+       File: 0utput-20260419-05.html
+       Changelog:
+       v05 (2026-04-19) — Prominence hierarchy. Live now has 2
+                          featured full-width cards (d00r, marg0 —
+                          the utility tools) and 2 standard cards
+                          (f0rtune500, t00t — the fun apps). In
+                          Progress has b0ng0 featured (active build)
+                          with b0p + st0rm secondary. Descriptions
+                          expanded on featured cards to justify the
+                          bigger visual weight. Also removed
+                          "RIGHTSIDEOUT LLC dba 0utput" from about
+                          section — too corporate for this stage.
+       v04 (2026-04-19) — d00r promoted to Live (beta).
+       ============================================================= */
+
+    :root {
+      --bg:       #F9F9F9;
+      --ink:      #034D32;
+      --accent:   #028454;
+      --accent-bg:#E4F3EE;
+      --border:   #C0DDD4;
+      --mint:     #00BD78;
+      --muted:    #6B7F77;
+      --paper:    #FFFFFF;
+      --shadow:   0 1px 2px rgba(3, 77, 50, 0.06), 0 8px 24px rgba(3, 77, 50, 0.08);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:       #0E1613;
+        --ink:      #E4F3EE;
+        --accent:   #00BD78;
+        --accent-bg:#14352A;
+        --border:   #1F3A30;
+        --muted:    #8FA59C;
+        --paper:    #141D1A;
+        --shadow:   0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.35);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      background: var(--bg);
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ---------- App shell ---------- */
+    .app {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    .brand {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+      display: inline-block;
+    }
+    .brand .z { color: var(--accent); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      margin: 40px 0 48px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6.5vw, 56px);
+      line-height: 1.03;
+      letter-spacing: -0.02em;
+      font-weight: 800;
+      margin: 0 0 16px;
+    }
+    .hero p {
+      font-size: 17px;
+      color: var(--muted);
+      margin: 0;
+      max-width: 560px;
+      line-height: 1.55;
+    }
+
+    /* ---------- Section label ---------- */
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 48px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+    }
+
+    /* ---------- App grid ---------- */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 640px) {
+      .apps-grid { grid-template-columns: 1fr; }
+    }
+
+    .app-card {
+      display: block;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      text-decoration: none;
+      color: var(--ink);
+      transition: border-color .15s, transform .05s, box-shadow .15s;
+      position: relative;
+    }
+    .app-card.live:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow);
+      transform: translateY(-1px);
+    }
+    .app-card.wip {
+      cursor: default;
+    }
+
+    /* Featured card — spans full grid width with bigger typography */
+    .app-card.featured {
+      grid-column: 1 / -1;
+      padding: 28px 30px;
+    }
+    .app-card.featured .app-wordmark {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+    .app-card.featured .app-desc {
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    .app-wordmark {
+      font-family: 'Space Mono', ui-monospace, monospace;
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 0.01em;
+      margin-bottom: 6px;
+      line-height: 1.1;
+    }
+    .app-wordmark .z { color: var(--accent); }
+
+    .app-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.45;
+      margin: 0 0 14px;
+    }
+
+    .app-status {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      display: inline-block;
+      padding: 4px 9px;
+      border-radius: 4px;
+    }
+    .app-status.live {
+      background: var(--accent-bg);
+      color: var(--accent);
+    }
+    .app-status.wip {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    /* ---------- About ---------- */
+    .about {
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 620px;
+    }
+    .about p {
+      margin: 0 0 10px;
+    }
+    .about p:last-child { margin-bottom: 0; }
+    .about a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: var(--border);
+      transition: text-decoration-color .15s;
+    }
+    .about a:hover {
+      text-decoration-color: var(--accent);
+    }
+
+    /* ---------- Footer ---------- */
+    .footer-meta {
+      margin-top: 40px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+    .footer-meta .version {
+      display: block;
+      margin-top: 4px;
+      font-variant-numeric: tabular-nums;
+      opacity: 0.7;
+      user-select: all;
+    }
+  </style>
+</head>
+<body style="background:#F9F9F9;color:#034D32;margin:0;">
+  <div class="app">
+    <a class="brand" href="./"><span class="z">0</span>utput</a>
+
+    <section class="hero">
+      <h1>Small, focused apps.</h1>
+      <p>A growing family. Every name drops a letter for a zero.</p>
+    </section>
+
+    <div class="section-label">Live</div>
+    <div class="apps-grid">
+      <a class="app-card live featured" href="https://d00r.app" target="_blank" rel="noopener">
+        <div class="app-wordmark">d<span class="z">0</span><span class="z">0</span>r</div>
+        <p class="app-desc">Branded timelines for processes and projects. For anyone explaining what happens when.</p>
+        <span class="app-status live">Beta · d00r.app</span>
+      </a>
+      <a class="app-card live featured" href="https://marg0.app" target="_blank" rel="noopener">
+        <div class="app-wordmark">marg<span class="z">0</span></div>
+        <p class="app-desc">Test your reading speed across 18 fonts. Find the one your brain reads fastest.</p>
+        <span class="app-status live">Live · marg0.app</span>
+      </a>
+      <a class="app-card live" href="https://f0rtune500.app" target="_blank" rel="noopener">
+        <div class="app-wordmark">f<span class="z">0</span>rtune5<span class="z">0</span><span class="z">0</span></div>
+        <p class="app-desc">Your resume, but at defunct American companies.</p>
+        <span class="app-status live">Live · f0rtune500.app</span>
+      </a>
+      <a class="app-card live" href="https://t00t.app" target="_blank" rel="noopener">
+        <div class="app-wordmark">t<span class="z">0</span><span class="z">0</span>t</div>
+        <p class="app-desc">A fart soundboard. Tap to toot.</p>
+        <span class="app-status live">Live · t00t.app</span>
+      </a>
+    </div>
+
+    <div class="section-label">In Progress</div>
+    <div class="apps-grid">
+      <div class="app-card wip featured">
+        <div class="app-wordmark">b<span class="z">0</span>ng<span class="z">0</span></div>
+        <p class="app-desc">A browser-based music playground. Chords, bass, lead, drums, pad — jam in the browser.</p>
+        <span class="app-status wip">In Progress</span>
+      </div>
+      <div class="app-card wip">
+        <div class="app-wordmark">b<span class="z">0</span>p</div>
+        <p class="app-desc">Song links that work on any streaming service.</p>
+        <span class="app-status wip">In Progress</span>
+      </div>
+      <div class="app-card wip">
+        <div class="app-wordmark">st<span class="z">0</span>rm</div>
+        <p class="app-desc">Guided brainstorming with decision trees.</p>
+        <span class="app-status wip">In Progress</span>
+      </div>
+    </div>
+
+    <div class="about">
+      <p><strong style="color:var(--ink);font-weight:600;">0utput</strong> is the company. <strong style="color:var(--ink);font-weight:600;">0fam</strong> is the family of apps. Every name drops a letter for a zero — no individual logos, the typography is the identity.</p>
+      <p>Built by <a href="https://rontheron.com" target="_blank" rel="noopener">Ron Seidel</a>.</p>
+    </div>
+
+    <div class="footer-meta">
+      <span class="version">v20260419-05</span>
+    </div>
+  </div>
+</body>
+</html>
