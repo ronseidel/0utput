@@ -8,26 +8,31 @@
   <title>0utput — a family of small, focused apps</title>
 
   <!-- Description -->
-  <meta name="description" content="0utput is a growing family of small, focused apps. Every name drops a letter for a zero. Built by Ron Seidel." />
+  <link rel="canonical" href="https://0utput.co/" />
+  <meta name="description" content="Small, focused apps. Things for fun. Stuff you can use. Or play with. Or just make your dad laugh. Built by Ron Seidel." />
 
   <!-- Favicon (Space Mono dotted zero, 0fam brand mark) -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='rgb(3,77,50)'/><ellipse cx='16' cy='16' rx='6' ry='8' fill='none' stroke='rgb(249,249,249)' stroke-width='3'/><circle cx='16' cy='16' r='1.4' fill='rgb(249,249,249)'/></svg>" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://0utput.co" />
-  <meta property="og:title" content="0utput — a family of small, focused apps" />
-  <meta property="og:description" content="A growing family of small, focused apps. Every name drops a letter for a zero." />
+  <meta property="og:url" content="https://0utput.co/" />
+  <meta property="og:site_name" content="0utput" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="0utput — small, focused apps" />
+  <meta property="og:description" content="Small, focused apps. Things for fun. Stuff you can use. Or play with. Or just make your dad laugh." />
   <meta property="og:image" content="https://0utput.co/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:site_name" content="0utput" />
+  <meta property="og:image:alt" content="0utput wordmark — the letter zero in green, followed by 'utput' in mint on a dark background. Tagline: Small, focused apps." />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="0utput — a family of small, focused apps" />
-  <meta name="twitter:description" content="Every name drops a letter for a zero." />
+  <meta name="twitter:title" content="0utput — small, focused apps" />
+  <meta name="twitter:description" content="Small, focused apps. Things for fun. Stuff you can use. Or play with. Or just make your dad laugh." />
   <meta name="twitter:image" content="https://0utput.co/og-image.png" />
+  <meta name="twitter:image:alt" content="0utput wordmark — the letter zero in green, followed by 'utput' in mint on a dark background. Tagline: Small, focused apps." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,8 +41,36 @@
   <style>
     /* =============================================================
        0utput — a family of small, focused apps (the 0fam)
-       File: 0utput-20260420-18.html
+       File: 0utput-20260420-19.html
        Changelog:
+       v19 (2026-04-20) — Meta tag overhaul, plus the missing
+                          og-image.png. Issues found: (1) Live
+                          site's og:image URL was 404ing — social
+                          previews have been broken for who knows
+                          how long. (2) All descriptions still
+                          carried the old "A growing family..."
+                          inventory framing from before the hero
+                          rewrite. (3) Missing common meta fields
+                          (canonical, og:locale, image alts for
+                          accessibility, og:image:type).
+                          Fixes: rewrote description / og:description
+                          / twitter:description to match hero
+                          voice ("Small, focused apps. Things
+                          for fun. Stuff you can use. Or play
+                          with. Or just make your dad laugh.").
+                          Tightened og:title and twitter:title
+                          from "a family of small, focused apps"
+                          to "small, focused apps" (less crowded
+                          in social previews). Added canonical
+                          link, og:locale, og:image:type,
+                          og:image:alt, twitter:image:alt.
+                          Generated og-image.png separately
+                          (1200x630, Space Mono Bold "0utput"
+                          wordmark with green 0 + "Small, focused
+                          apps." tagline in muted, on dark).
+                          Source: render_og.py. Needs to be
+                          uploaded to 0utput.co root alongside
+                          index.html when deploying.
        v18 (2026-04-20) — Reverted h1 zero back to letter o.
                           Oldstyle-nums did activate in Fraunces
                           but the 0 still read capital-ish.
@@ -622,7 +655,7 @@
     </div>
 
     <div class="footer-meta">
-      <span class="version">v20260420-18</span>
+      <span class="version">v20260420-19</span>
     </div>
   </div>
 
