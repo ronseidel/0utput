@@ -31,13 +31,268 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,0..100&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
 
   <style>
     /* =============================================================
        0utput — a family of small, focused apps (the 0fam)
-       File: 0utput-20260420-01.html
+       File: 0utput-20260420-18.html
        Changelog:
+       v18 (2026-04-20) — Reverted h1 zero back to letter o.
+                          Oldstyle-nums did activate in Fraunces
+                          but the 0 still read capital-ish.
+                          Realized the deeper issue isn't
+                          character-shape, it's context. Zero-
+                          substitution is a wordmark device — it
+                          works on d00r, marg0, f0rtune500 because
+                          the entire word is designed as a mark
+                          and the zeros are expected features. In
+                          prose context (a regular sentence with
+                          a regular word), a zero in the middle
+                          of "focused" reads as typo not brand
+                          moment. Shape tuning can't fix that.
+                          Keeping green .z accent on the o — the
+                          color ties the h1 visually to the grid
+                          below without asking a prose letter to
+                          do wordmark work.
+                          Removed font-variant-numeric: oldstyle-
+                          nums rule since there are no numerals
+                          in the h1 anymore. Dead code out.
+       v17 (2026-04-20) — Switched h1 numerals from lining
+                          (default, cap-height) to oldstyle
+                          (x-height) via font-variant-numeric:
+                          oldstyle-nums. This restores the
+                          literal zero-substitution in "f0cused"
+                          (the actual brand joke) while fixing
+                          the cap-height optical issue that made
+                          v15's 0 read like a stray capital.
+                          Oldstyle numerals have varying heights
+                          — some sit on the baseline like
+                          lowercase letters, some have descenders
+                          — which is exactly what lets the 0 sit
+                          naturally inside a word. Fraunces ships
+                          with full OpenType feature support so
+                          this is a one-property change; no font
+                          file swap needed.
+       v16 (2026-04-20) — Two changes: (1) H1 zero → letter o.
+                          The Fraunces lining numerals are cap-
+                          height, so the 0 sat taller than
+                          surrounding lowercase letters and read
+                          like a stray capital. Kept the green
+                          accent via span.z but swapped the
+                          character back. Note for future: could
+                          restore the literal zero and add
+                          font-variant-numeric: oldstyle-nums to
+                          get an x-height zero that sits
+                          naturally among lowercase letters —
+                          preserves the brand joke more
+                          literally. One-line swap if Ron wants
+                          to revisit.
+                          (2) Split the first hero paragraph in
+                          two. "I'm a dude with a thousand
+                          ideas." now stands alone as a setup
+                          line; the quote + "has always been the
+                          response. FAIR!" is its own paragraph
+                          underneath. Creates the setup-pause-
+                          reaction rhythm Ron was after — the
+                          FAIR! lands with more room around it.
+       v15 (2026-04-20) — H1 gets the brand treatment: "Small,
+                          focused apps." → "Small, f0cused apps."
+                          with the zero in green (via span.z).
+                          Didn't green the whole headline — that
+                          would have shouted over the existing
+                          green accent system (brand 0, section
+                          labels, app wordmarks, status pills).
+                          Single-letter green is the right scale:
+                          minimum possible brand expression, and
+                          it creates a visual echo with the
+                          0utput wordmark up top (two green zeros
+                          bookending). Added scoped CSS rule
+                          .hero h1 .z { color: var(--accent) }
+                          following the same pattern as .brand .z
+                          and .app-wordmark .z.
+       v14 (2026-04-20) — Dropped "actually" from the friends'
+                          quote: "When you gonna actually build
+                          it?" → "When you gonna build it?" It
+                          was reading as rhetorical emphasis in
+                          Ron's head but on the page just slowed
+                          the sentence down.
+       v13 (2026-04-20) — H1 font swap: Literata → Fraunces.
+                          Literata at 700/56px was reading
+                          Times-New-Romany, too newspaper-
+                          masthead. Fraunces is an expressive
+                          display serif (Undercase Type) with a
+                          SOFT variable axis (0 = sharp wedges,
+                          100 = rounded blobs) — the main dial
+                          for tuning its personality. Set SOFT
+                          to 40 for warm-but-distinctive
+                          terminals. Also dialed opsz to 144
+                          (display size max) for optimal
+                          proportions at h1 scale. Body stays in
+                          Literata — editorial pairing of
+                          expressive display + calm text serif.
+                          Loaded Fraunces with opsz/wght/SOFT
+                          axes (no italic, no WONK — not using
+                          them). Font-family stack has Fraunces
+                          first then Literata as fallback, then
+                          system serifs.
+       v12 (2026-04-20) — Body font swap attempt #3: Newsreader
+                          → Literata. Newsreader felt too small
+                          and hard to read. Literata has a
+                          noticeably larger x-height (designed by
+                          TypeTogether for Google Play Books
+                          specifically for screen reading) so it
+                          reads "bigger" at the same pixel size.
+                          Same variable optical size + italic
+                          axes, same Google Fonts load pattern.
+                          Also bumped hero-story font-size 17px
+                          → 18px for extra readability on prime
+                          real estate. Leaving card descriptions
+                          at 14px and about at 14px — Literata's
+                          x-height should rescue them without a
+                          size change, but if cards still feel
+                          tight post-swap, bump .app-desc
+                          font-size to 15px as the easy next
+                          step.
+       v11 (2026-04-20) — Body font swap attempt #2: Space Mono
+                          → Newsreader. Full mono body was too
+                          much. Newsreader is a warm text serif
+                          designed specifically for reading (by
+                          David Jonathan Ross), uses variable
+                          optical size axis so it auto-tunes for
+                          display vs text sizes. Taking the
+                          chance to simplify: dropped Inter from
+                          the font load entirely. Two-font system
+                          now — Newsreader for h1 + body,
+                          Space Mono for brand/labels/wordmarks.
+                          H1 adjustments: removed explicit Inter
+                          declaration (inherits Newsreader now),
+                          weight 800 → 700 (Newsreader's max),
+                          letter-spacing -0.02em → -0.01em
+                          (serif proportions want less tightening
+                          than Inter did at display size).
+       v10 (2026-04-20) — Body font swap: Inter → Space Mono.
+                          Inter was reading as utilitarian SaaS
+                          default — fighting the personal voice
+                          of the hero copy. About section already
+                          declares "typography is the identity,"
+                          so leaning into Space Mono across body
+                          (hero paragraphs, card descriptions,
+                          about) reinforces the brand rather than
+                          splitting it. Kept .hero h1 explicitly
+                          in Inter as a statement-font break —
+                          mono at 56px/800 gets brutalist, h1
+                          wants to feel inviting. Loaded italic
+                          variants of Space Mono (0,400;0,700;
+                          1,400;1,700) so .quote-inline italic
+                          renders properly instead of synthesizing
+                          slant from upright. Bumped .app-desc
+                          line-height 1.45 → 1.55 because mono
+                          needs more vertical breathing room than
+                          sans to stay legible at 14px.
+       v09 (2026-04-20) — Container max-width 860px → 840px.
+                          Subtle but makes the page feel a touch
+                          more considered/publication-like.
+       v08 (2026-04-20) — Two additions: (1) Moved text-wrap
+                          handling to a global default. Body
+                          gets text-wrap: pretty (inherited
+                          property, cascades everywhere) and
+                          h1-h6 get text-wrap: balance (better
+                          for short multi-line blocks — headlines
+                          distribute words evenly instead of just
+                          avoiding orphans). Removed the duplicate
+                          text-wrap: pretty from .hero-story since
+                          it's inherited now. This future-proofs
+                          every app-card description, about
+                          paragraph, and any heading that wraps.
+                          (2) Bumped .app padding from 32px/20px/
+                          80px to 40px/32px/96px (top/horizontal/
+                          bottom). Desktop viewports were feeling
+                          crowded at container edges. Added mobile
+                          fallback in the existing 640px media
+                          query: 32px/20px/64px — keeps mobile
+                          content width reasonable on narrow
+                          devices while still breathing slightly.
+       v07 (2026-04-20) — Two fixes: (1) Removed "More on the
+                          way!" from the second paragraph — info
+                          is already carried by the In Progress
+                          section. (2) Killed dead .hero p rule
+                          that was leftover from v01 subtitle
+                          styling. It had max-width: 560px, and
+                          because the .hero-story p selector I
+                          added in v05 didn't explicitly override
+                          max-width, the cascade kept applying
+                          the 560px constraint — explains why the
+                          hero story looked narrow despite v05
+                          claiming to remove the constraint. Now
+                          hero-story paragraphs fill the full
+                          860px container width as intended.
+       v06 (2026-04-20) — Added text-wrap: pretty to .hero-story
+                          to fix orphan on the second paragraph
+                          ("More on the way!" was wrapping to a
+                          line containing just "way!"). pretty
+                          rebalances the last few lines of a
+                          block to avoid single-word orphans —
+                          designed exactly for body prose. Good
+                          browser support as of late 2023.
+       v05 (2026-04-20) — Hero tightened again to 2 paragraphs
+                          in Ron's sharper voice. "I'm a dude with
+                          a thousand ideas. [quote] FAIR!" / "But
+                          here I am! Little apps seeing the light
+                          of day. Things for fun. Stuff you can
+                          use. Or play with. Or just make your
+                          dad laugh. More on the way!" Quote is
+                          now inline inside the first paragraph
+                          rather than a standalone blockquote —
+                          swapped .quote (block with left border)
+                          for .quote-inline (italic + muted, no
+                          border). Also removed max-width from
+                          .hero-story so it fills container width
+                          instead of sitting 300px short of the
+                          h1 and grid — readability line-length
+                          concern doesn't apply to 2 short
+                          paragraphs. Bumped font-size to 17px
+                          (from 16px) now that line-length is
+                          wider — maintains comfortable reading
+                          rhythm.
+       v04 (2026-04-20) — Hero tightened from 4 paragraphs to 3.
+                          Dropped the "still have wouldn't it be
+                          cool up the whazoo" kicker — it was the
+                          most self-deprecating line and the info
+                          ("more coming") is already carried by
+                          the In Progress section. Tightened the
+                          answer paragraph: "making things for
+                          fun, but things you can use, or play
+                          with, or mess around with" → "things for
+                          fun, but things you can use. Or play
+                          with." Shorter sentences, same rhythm,
+                          less text before the grid.
+       v03 (2026-04-20) — Typo fix in hero kicker line: "some of
+                          these seeing the light of day" → "some
+                          of these are seeing the light of day".
+       v02 (2026-04-20) — Hero rewrite. Previous hero ("Small,
+                          focused apps. / A growing family. Every
+                          name drops a letter for a zero.") was an
+                          inventory-with-a-clever-branding-fact —
+                          it said WHAT but not WHY. New hero keeps
+                          the h1 tagline but replaces the subtitle
+                          with a four-paragraph intro in Ron's
+                          voice: the friends'-taunt frame, the
+                          answer, the range cue (use / play / mess
+                          around / make dad laugh), and the
+                          self-aware kicker ("still have 'wouldn't
+                          it be cool!' up the whazoo"). Cut
+                          "nights and weekends, train rides to
+                          work" down to just "nights and
+                          weekends" — employer signal without the
+                          stacking-effort tone. Removed "homies"
+                          (dates it). Dropped the "growing family
+                          / letter for a zero" subtitle since
+                          that same fact is already in the about
+                          section below. New .hero-story block
+                          styled as a short letter — Inter body
+                          size, looser line-height, friends' quote
+                          set off with italic + left border.
        v01 (2026-04-20) — Added ko-fi tip link to about section,
                           mirroring the pattern on marg0.app
                           ("Like Margo? Leave a tip ☕"). Kept it
@@ -103,18 +358,24 @@
       color: var(--ink);
       margin: 0;
       padding: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Literata', Georgia, 'Times New Roman', serif;
       font-size: 16px;
       line-height: 1.5;
+      text-wrap: pretty;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
+    /* Balance on headings — distributes words evenly across multiple lines */
+    h1, h2, h3, h4, h5, h6 {
+      text-wrap: balance;
+    }
+
     /* ---------- App shell ---------- */
     .app {
-      max-width: 860px;
+      max-width: 840px;
       margin: 0 auto;
-      padding: 32px 20px 80px;
+      padding: 40px 32px 96px;
     }
 
     .brand {
@@ -133,18 +394,32 @@
       margin: 40px 0 48px;
     }
     .hero h1 {
+      font-family: 'Fraunces', 'Literata', Georgia, 'Times New Roman', serif;
+      font-variation-settings: "opsz" 144, "SOFT" 40;
       font-size: clamp(36px, 6.5vw, 56px);
       line-height: 1.03;
-      letter-spacing: -0.02em;
-      font-weight: 800;
+      letter-spacing: -0.01em;
+      font-weight: 700;
       margin: 0 0 16px;
     }
-    .hero p {
-      font-size: 17px;
+    .hero h1 .z { color: var(--accent); }
+
+    /* ---------- Intro narrative ---------- */
+    .hero-story {
+      margin: 24px 0 0;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+    .hero-story p {
+      margin: 0 0 14px;
+    }
+    .hero-story p:last-child {
+      margin-bottom: 0;
+    }
+    .hero-story .quote-inline {
       color: var(--muted);
-      margin: 0;
-      max-width: 560px;
-      line-height: 1.55;
+      font-style: italic;
     }
 
     /* ---------- Section label ---------- */
@@ -167,6 +442,7 @@
       gap: 14px;
     }
     @media (max-width: 640px) {
+      .app { padding: 32px 20px 64px; }
       .apps-grid { grid-template-columns: 1fr; }
     }
 
@@ -217,7 +493,7 @@
     .app-desc {
       font-size: 14px;
       color: var(--muted);
-      line-height: 1.45;
+      line-height: 1.55;
       margin: 0 0 14px;
     }
 
@@ -288,8 +564,12 @@
     <a class="brand" href="./"><span class="z">0</span>utput</a>
 
     <section class="hero">
-      <h1>Small, focused apps.</h1>
-      <p>A growing family. Every name drops a letter for a zero.</p>
+      <h1>Small, f<span class="z">o</span>cused apps.</h1>
+      <div class="hero-story">
+        <p>I'm a dude with a thousand ideas.</p>
+        <p><span class="quote-inline">"Yeah, that'd be awesome! When you gonna build it?"</span> has always been the response. FAIR!</p>
+        <p>But here I am! Little apps seeing the light of day. Things for fun. Stuff you can use. Or play with. Or just make your dad laugh.</p>
+      </div>
     </section>
 
     <div class="section-label">Live</div>
@@ -342,7 +622,7 @@
     </div>
 
     <div class="footer-meta">
-      <span class="version">v20260420-01</span>
+      <span class="version">v20260420-18</span>
     </div>
   </div>
 
