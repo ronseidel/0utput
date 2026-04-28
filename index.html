@@ -1,750 +1,2651 @@
-<!doctype html>
-<html lang="en" style="background:#0E1613;color:#E4F3EE;">
+<!DOCTYPE html>
+<html lang="en" style="background:#F9F9F9;color:#034D32">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="dark" />
-  <meta name="theme-color" content="#0E1613" />
-  <title>0utput — a family of small, focused apps</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>t00n — instrument tuner</title>
 
-  <!-- Description -->
-  <link rel="canonical" href="https://0utput.co/" />
-  <meta name="description" content="Small, focused apps. Things for fun. Stuff you can use. Or play with. Or just make your dad laugh. Built by Ron Seidel." />
+<!-- SEO -->
+<meta name="description" content="t00n is a focused web tuner. Guitar, bass, ukulele, violin, mandolin, banjo, cello, plus chromatic. Adjustable A4 reference, beginner chord reference. No ads, no sign-in, no app to install.">
+<meta name="theme-color" content="#F9F9F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a1612" media="(prefers-color-scheme: dark)">
 
-  <!-- Favicon (Space Mono dotted zero, 0fam brand mark) -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='rgb(3,77,50)'/><ellipse cx='16' cy='16' rx='6' ry='8' fill='none' stroke='rgb(249,249,249)' stroke-width='3'/><circle cx='16' cy='16' r='1.4' fill='rgb(249,249,249)'/></svg>" />
+<!-- Open Graph -->
+<meta property="og:title" content="t00n — instrument tuner">
+<meta property="og:description" content="Guitar, bass, ukulele, violin, mandolin, banjo, cello, chromatic. Adjustable A4. Beginner chord reference. Runs in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="0fam">
+<meta property="og:url" content="https://t00n.app/">
+<meta property="og:image" content="https://t00n.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="t00n — instrument tuner. Runs in your browser.">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://0utput.co/" />
-  <meta property="og:site_name" content="0utput" />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="0utput — small, focused apps" />
-  <meta property="og:description" content="Small, focused apps. Things for fun. Stuff you can use. Or play with. Or just make your dad laugh." />
-  <meta property="og:image" content="https://0utput.co/og-image.png" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="0utput wordmark — the letter zero in green, followed by 'utput' in mint on a dark background. Tagline: Small, focused apps." />
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="t00n — instrument tuner">
+<meta name="twitter:description" content="Guitar, bass, ukulele, violin, mandolin, banjo, cello, chromatic. Adjustable A4. Runs in your browser.">
+<meta name="twitter:image" content="https://t00n.app/og.png">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="0utput — small, focused apps" />
-  <meta name="twitter:description" content="Small, focused apps. Things for fun. Stuff you can use. Or play with. Or just make your dad laugh." />
-  <meta name="twitter:image" content="https://0utput.co/og-image.png" />
-  <meta name="twitter:image:alt" content="0utput wordmark — the letter zero in green, followed by 'utput' in mint on a dark background. Tagline: Small, focused apps." />
+<!-- Favicon: t00n brand mark — meter (vertical ellipse) with a mint
+     "in-tune" needle at center. Mirrors the in-app cents meter and the
+     0fam color story (deep green ink, mint accent). Inline SVG renders
+     crisp at any resolution; PNG fallback covers older platforms.
+     Deploy notes: drop /favicon.png and /apple-touch-icon.png at web root. -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23034D32'/%3E%3Cellipse cx='16' cy='16' rx='7' ry='10' fill='none' stroke='%2300BD78' stroke-width='2.5'/%3E%3Cline x1='16' y1='8' x2='16' y2='24' stroke='%2300BD78' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,0..100&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F9F9F9;
+    --ink: #034D32;
+    --accent: #028454;
+    --accent-bg: #E4F3EE;
+    --border: #C0DDD4;
+    --mint: #00BD78;
+    --muted: #5a7868;
+    /* Role-based vars so the play button and active segment can use their
+       own accent in dark mode without per-element @media overrides. */
+    --play-bg: #034D32;
+    --play-text: #F9F9F9;
+    --seg-active-text: #F9F9F9;
+  }
 
-  <style>
-    /* =============================================================
-       0utput — a family of small, focused apps (the 0fam)
-       File: 0utput-20260424-24.html
-       Changelog:
-       v24 (2026-04-24) — Dropped "Simple" entirely. "Simple" is a
-                          subjective qualifier in the same class as
-                          "minimalist" and "focused" — the user has
-                          to take it on faith. Ron's no-adjectives-
-                          in-marketing rule applies. The rule isn't
-                          absolute (the other cards use "branded
-                          timelines," "defunct American companies,"
-                          "fart soundboard" — all factual noun-
-                          modifiers, not subjective qualifiers).
-                          Final: "Web metronome. Tap tempo, time
-                          signatures, four click sounds." Matches
-                          the dominant pattern (no article, factual
-                          noun phrase, then substance). Lets the
-                          spare feature list demonstrate simplicity
-                          instead of claiming it.
-       v23 (2026-04-24) — "Minimalist" → "Simple." "Minimalist" was
-                          the only design-language word on the page
-                          and clashed with the rest of the card
-                          voice (plain, descriptive: "branded
-                          timelines," "reading speed," "fart
-                          soundboard"). Calling your own design
-                          minimalist is also slightly self-defeating
-                          — letting the design speak while the copy
-                          stays plain is the stronger move.
-       v22 (2026-04-24) — Tightened t0ck description: "A focused
-                          web metronome." → "Minimalist web metro-
-                          nome." Dropped the article, swapped the
-                          adjective. Reads cleaner at the featured
-                          card scale and "minimalist" is more
-                          honest about the design intent than
-                          "focused" (which had become a tic across
-                          the 0fam descriptions).
-       v21 (2026-04-24) — t0ck promoted from non-featured (paired
-                          card slotted between marg0 and f0rtune500)
-                          to featured (full-width hero) and moved
-                          to the top of the LIVE row. The new live-
-                          row reads: t0ck → d00r → marg0 (all three
-                          featured, full-width) → f0rtune500 + t00t
-                          (paired non-featured). Reasoning: Ron's
-                          call after seeing v20 — t0ck is hero-tier
-                          alongside d00r. Three featured rows up
-                          top, one paired row of the comedy-leaning
-                          apps below. The descent-into-chaos arc
-                          still lands (utility, utility, utility,
-                          satire, punchline) but now with t0ck as
-                          the lead utility.
-                          No description change. Voice-matched to
-                          d00r/marg0 (two-sentence, what + how).
-       v20 (2026-04-24) — Added t0ck to the LIVE row. The metronome
-                          is stable enough to ship after the long
-                          iOS Safari audio fight (Web Audio silently
-                          muted on speaker; resolved with continuous
-                          base-tempo audio file + playbackRate
-                          adjustment, no looping). Placed between
-                          marg0 and f0rtune500 — preserves the live-
-                          row arc of utility → utility → satire →
-                          punchline. Kept t0ck non-featured for now;
-                          d00r and marg0 stay the featured pair (3
-                          featured cards would be top-heavy in a
-                          5-card grid). Description matches the
-                          voice of the others: short, direct, no
-                          bragging about the technical fight.
-                          No structural changes elsewhere — b0ng0,
-                          b0p, st0rm stay in In Progress. r0ll not
-                          added; audio samples still need work.
-       v19 (2026-04-20) — Meta tag overhaul, plus the missing
-                          og-image.png. Issues found: (1) Live
-                          site's og:image URL was 404ing — social
-                          previews have been broken for who knows
-                          how long. (2) All descriptions still
-                          carried the old "A growing family..."
-                          inventory framing from before the hero
-                          rewrite. (3) Missing common meta fields
-                          (canonical, og:locale, image alts for
-                          accessibility, og:image:type).
-                          Fixes: rewrote description / og:description
-                          / twitter:description to match hero
-                          voice ("Small, focused apps. Things
-                          for fun. Stuff you can use. Or play
-                          with. Or just make your dad laugh.").
-                          Tightened og:title and twitter:title
-                          from "a family of small, focused apps"
-                          to "small, focused apps" (less crowded
-                          in social previews). Added canonical
-                          link, og:locale, og:image:type,
-                          og:image:alt, twitter:image:alt.
-                          Generated og-image.png separately
-                          (1200x630, Space Mono Bold "0utput"
-                          wordmark with green 0 + "Small, focused
-                          apps." tagline in muted, on dark).
-                          Source: render_og.py. Needs to be
-                          uploaded to 0utput.co root alongside
-                          index.html when deploying.
-       v18 (2026-04-20) — Reverted h1 zero back to letter o.
-                          Oldstyle-nums did activate in Fraunces
-                          but the 0 still read capital-ish.
-                          Realized the deeper issue isn't
-                          character-shape, it's context. Zero-
-                          substitution is a wordmark device — it
-                          works on d00r, marg0, f0rtune500 because
-                          the entire word is designed as a mark
-                          and the zeros are expected features. In
-                          prose context (a regular sentence with
-                          a regular word), a zero in the middle
-                          of "focused" reads as typo not brand
-                          moment. Shape tuning can't fix that.
-                          Keeping green .z accent on the o — the
-                          color ties the h1 visually to the grid
-                          below without asking a prose letter to
-                          do wordmark work.
-                          Removed font-variant-numeric: oldstyle-
-                          nums rule since there are no numerals
-                          in the h1 anymore. Dead code out.
-       v17 (2026-04-20) — Switched h1 numerals from lining
-                          (default, cap-height) to oldstyle
-                          (x-height) via font-variant-numeric:
-                          oldstyle-nums. This restores the
-                          literal zero-substitution in "f0cused"
-                          (the actual brand joke) while fixing
-                          the cap-height optical issue that made
-                          v15's 0 read like a stray capital.
-                          Oldstyle numerals have varying heights
-                          — some sit on the baseline like
-                          lowercase letters, some have descenders
-                          — which is exactly what lets the 0 sit
-                          naturally inside a word. Fraunces ships
-                          with full OpenType feature support so
-                          this is a one-property change; no font
-                          file swap needed.
-       v16 (2026-04-20) — Two changes: (1) H1 zero → letter o.
-                          The Fraunces lining numerals are cap-
-                          height, so the 0 sat taller than
-                          surrounding lowercase letters and read
-                          like a stray capital. Kept the green
-                          accent via span.z but swapped the
-                          character back. Note for future: could
-                          restore the literal zero and add
-                          font-variant-numeric: oldstyle-nums to
-                          get an x-height zero that sits
-                          naturally among lowercase letters —
-                          preserves the brand joke more
-                          literally. One-line swap if Ron wants
-                          to revisit.
-                          (2) Split the first hero paragraph in
-                          two. "I'm a dude with a thousand
-                          ideas." now stands alone as a setup
-                          line; the quote + "has always been the
-                          response. FAIR!" is its own paragraph
-                          underneath. Creates the setup-pause-
-                          reaction rhythm Ron was after — the
-                          FAIR! lands with more room around it.
-       v15 (2026-04-20) — H1 gets the brand treatment: "Small,
-                          focused apps." → "Small, f0cused apps."
-                          with the zero in green (via span.z).
-                          Didn't green the whole headline — that
-                          would have shouted over the existing
-                          green accent system (brand 0, section
-                          labels, app wordmarks, status pills).
-                          Single-letter green is the right scale:
-                          minimum possible brand expression, and
-                          it creates a visual echo with the
-                          0utput wordmark up top (two green zeros
-                          bookending). Added scoped CSS rule
-                          .hero h1 .z { color: var(--accent) }
-                          following the same pattern as .brand .z
-                          and .app-wordmark .z.
-       v14 (2026-04-20) — Dropped "actually" from the friends'
-                          quote: "When you gonna actually build
-                          it?" → "When you gonna build it?" It
-                          was reading as rhetorical emphasis in
-                          Ron's head but on the page just slowed
-                          the sentence down.
-       v13 (2026-04-20) — H1 font swap: Literata → Fraunces.
-                          Literata at 700/56px was reading
-                          Times-New-Romany, too newspaper-
-                          masthead. Fraunces is an expressive
-                          display serif (Undercase Type) with a
-                          SOFT variable axis (0 = sharp wedges,
-                          100 = rounded blobs) — the main dial
-                          for tuning its personality. Set SOFT
-                          to 40 for warm-but-distinctive
-                          terminals. Also dialed opsz to 144
-                          (display size max) for optimal
-                          proportions at h1 scale. Body stays in
-                          Literata — editorial pairing of
-                          expressive display + calm text serif.
-                          Loaded Fraunces with opsz/wght/SOFT
-                          axes (no italic, no WONK — not using
-                          them). Font-family stack has Fraunces
-                          first then Literata as fallback, then
-                          system serifs.
-       v12 (2026-04-20) — Body font swap attempt #3: Newsreader
-                          → Literata. Newsreader felt too small
-                          and hard to read. Literata has a
-                          noticeably larger x-height (designed by
-                          TypeTogether for Google Play Books
-                          specifically for screen reading) so it
-                          reads "bigger" at the same pixel size.
-                          Same variable optical size + italic
-                          axes, same Google Fonts load pattern.
-                          Also bumped hero-story font-size 17px
-                          → 18px for extra readability on prime
-                          real estate. Leaving card descriptions
-                          at 14px and about at 14px — Literata's
-                          x-height should rescue them without a
-                          size change, but if cards still feel
-                          tight post-swap, bump .app-desc
-                          font-size to 15px as the easy next
-                          step.
-       v11 (2026-04-20) — Body font swap attempt #2: Space Mono
-                          → Newsreader. Full mono body was too
-                          much. Newsreader is a warm text serif
-                          designed specifically for reading (by
-                          David Jonathan Ross), uses variable
-                          optical size axis so it auto-tunes for
-                          display vs text sizes. Taking the
-                          chance to simplify: dropped Inter from
-                          the font load entirely. Two-font system
-                          now — Newsreader for h1 + body,
-                          Space Mono for brand/labels/wordmarks.
-                          H1 adjustments: removed explicit Inter
-                          declaration (inherits Newsreader now),
-                          weight 800 → 700 (Newsreader's max),
-                          letter-spacing -0.02em → -0.01em
-                          (serif proportions want less tightening
-                          than Inter did at display size).
-       v10 (2026-04-20) — Body font swap: Inter → Space Mono.
-                          Inter was reading as utilitarian SaaS
-                          default — fighting the personal voice
-                          of the hero copy. About section already
-                          declares "typography is the identity,"
-                          so leaning into Space Mono across body
-                          (hero paragraphs, card descriptions,
-                          about) reinforces the brand rather than
-                          splitting it. Kept .hero h1 explicitly
-                          in Inter as a statement-font break —
-                          mono at 56px/800 gets brutalist, h1
-                          wants to feel inviting. Loaded italic
-                          variants of Space Mono (0,400;0,700;
-                          1,400;1,700) so .quote-inline italic
-                          renders properly instead of synthesizing
-                          slant from upright. Bumped .app-desc
-                          line-height 1.45 → 1.55 because mono
-                          needs more vertical breathing room than
-                          sans to stay legible at 14px.
-       v09 (2026-04-20) — Container max-width 860px → 840px.
-                          Subtle but makes the page feel a touch
-                          more considered/publication-like.
-       v08 (2026-04-20) — Two additions: (1) Moved text-wrap
-                          handling to a global default. Body
-                          gets text-wrap: pretty (inherited
-                          property, cascades everywhere) and
-                          h1-h6 get text-wrap: balance (better
-                          for short multi-line blocks — headlines
-                          distribute words evenly instead of just
-                          avoiding orphans). Removed the duplicate
-                          text-wrap: pretty from .hero-story since
-                          it's inherited now. This future-proofs
-                          every app-card description, about
-                          paragraph, and any heading that wraps.
-                          (2) Bumped .app padding from 32px/20px/
-                          80px to 40px/32px/96px (top/horizontal/
-                          bottom). Desktop viewports were feeling
-                          crowded at container edges. Added mobile
-                          fallback in the existing 640px media
-                          query: 32px/20px/64px — keeps mobile
-                          content width reasonable on narrow
-                          devices while still breathing slightly.
-       v07 (2026-04-20) — Two fixes: (1) Removed "More on the
-                          way!" from the second paragraph — info
-                          is already carried by the In Progress
-                          section. (2) Killed dead .hero p rule
-                          that was leftover from v01 subtitle
-                          styling. It had max-width: 560px, and
-                          because the .hero-story p selector I
-                          added in v05 didn't explicitly override
-                          max-width, the cascade kept applying
-                          the 560px constraint — explains why the
-                          hero story looked narrow despite v05
-                          claiming to remove the constraint. Now
-                          hero-story paragraphs fill the full
-                          860px container width as intended.
-       v06 (2026-04-20) — Added text-wrap: pretty to .hero-story
-                          to fix orphan on the second paragraph
-                          ("More on the way!" was wrapping to a
-                          line containing just "way!"). pretty
-                          rebalances the last few lines of a
-                          block to avoid single-word orphans —
-                          designed exactly for body prose. Good
-                          browser support as of late 2023.
-       v05 (2026-04-20) — Hero tightened again to 2 paragraphs
-                          in Ron's sharper voice. "I'm a dude with
-                          a thousand ideas. [quote] FAIR!" / "But
-                          here I am! Little apps seeing the light
-                          of day. Things for fun. Stuff you can
-                          use. Or play with. Or just make your
-                          dad laugh. More on the way!" Quote is
-                          now inline inside the first paragraph
-                          rather than a standalone blockquote —
-                          swapped .quote (block with left border)
-                          for .quote-inline (italic + muted, no
-                          border). Also removed max-width from
-                          .hero-story so it fills container width
-                          instead of sitting 300px short of the
-                          h1 and grid — readability line-length
-                          concern doesn't apply to 2 short
-                          paragraphs. Bumped font-size to 17px
-                          (from 16px) now that line-length is
-                          wider — maintains comfortable reading
-                          rhythm.
-       v04 (2026-04-20) — Hero tightened from 4 paragraphs to 3.
-                          Dropped the "still have wouldn't it be
-                          cool up the whazoo" kicker — it was the
-                          most self-deprecating line and the info
-                          ("more coming") is already carried by
-                          the In Progress section. Tightened the
-                          answer paragraph: "making things for
-                          fun, but things you can use, or play
-                          with, or mess around with" → "things for
-                          fun, but things you can use. Or play
-                          with." Shorter sentences, same rhythm,
-                          less text before the grid.
-       v03 (2026-04-20) — Typo fix in hero kicker line: "some of
-                          these seeing the light of day" → "some
-                          of these are seeing the light of day".
-       v02 (2026-04-20) — Hero rewrite. Previous hero ("Small,
-                          focused apps. / A growing family. Every
-                          name drops a letter for a zero.") was an
-                          inventory-with-a-clever-branding-fact —
-                          it said WHAT but not WHY. New hero keeps
-                          the h1 tagline but replaces the subtitle
-                          with a four-paragraph intro in Ron's
-                          voice: the friends'-taunt frame, the
-                          answer, the range cue (use / play / mess
-                          around / make dad laugh), and the
-                          self-aware kicker ("still have 'wouldn't
-                          it be cool!' up the whazoo"). Cut
-                          "nights and weekends, train rides to
-                          work" down to just "nights and
-                          weekends" — employer signal without the
-                          stacking-effort tone. Removed "homies"
-                          (dates it). Dropped the "growing family
-                          / letter for a zero" subtitle since
-                          that same fact is already in the about
-                          section below. New .hero-story block
-                          styled as a short letter — Inter body
-                          size, looser line-height, friends' quote
-                          set off with italic + left border.
-       v01 (2026-04-20) — Added ko-fi tip link to about section,
-                          mirroring the pattern on marg0.app
-                          ("Like Margo? Leave a tip ☕"). Kept it
-                          subtle — its own small paragraph at the
-                          end of about, not a CTA button, not a
-                          bigger treatment. Framed as "Like these
-                          apps?" (pointing at the grid above)
-                          rather than "support the maker" (too
-                          solicitous for a directory page). Same
-                          ko-fi account as marg0.
-       v07 (2026-04-19) — Added press/partnerships email to about
-                          section: hello@0utput.co. Framed
-                          explicitly as "press and partnerships" to
-                          signal the kind of inbound we want and
-                          filter out generic support noise (which
-                          should go to individual app repos).
-       v06 (2026-04-19) — Dark-only. 0utput.co is a directory page,
-                          not a destination — the 0fam brand leans
-                          dark (Space Mono, terminal aesthetic), and
-                          mixing light/dark modes here was causing
-                          visible bugs where the hero stayed light
-                          while cards went dark. Collapsed to a
-                          single dark palette.
-                          • color-scheme meta: "light" → "dark".
-                          • theme-color meta: single dark value.
-                          • html/body inline styles: dark values.
-                          • Removed :root light defaults and the
-                            prefers-color-scheme:dark media query —
-                            the dark values ARE the defaults now.
-                          • Added JS enforcer (per 0fam HTML rule:
-                            never rely on CSS vars alone) that sets
-                            html+body bg/color/colorScheme inline on
-                            load — bulletproofs against caching or
-                            injected styles.
-       v05 (2026-04-19) — Prominence hierarchy. Live now has 2
-                          featured full-width cards (d00r, marg0 —
-                          the utility tools) and 2 standard cards
-                          (f0rtune500, t00t — the fun apps). In
-                          Progress has b0ng0 featured (active build)
-                          with b0p + st0rm secondary. Descriptions
-                          expanded on featured cards to justify the
-                          bigger visual weight. Also removed
-                          "RIGHTSIDEOUT LLC dba 0utput" from about
-                          section — too corporate for this stage.
-       v04 (2026-04-19) — d00r promoted to Live (beta).
-       ============================================================= */
+  /* Dark palette shared between system-preference and manual-toggle paths. */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a1612;
+      --ink: #E4F3EE;
+      --accent: #00BD78;
+      --accent-bg: #0f2a1f;
+      --border: #1f3d2d;
+      --mint: #00BD78;
+      --muted: #7a9a8a;
+      --play-bg: #00BD78;
+      --play-text: #0a1612;
+      --seg-active-text: #0a1612;
+    }
+    :root:not([data-theme="light"]) html,
+    :root:not([data-theme="light"]) body {
+      background: #0a1612 !important;
+      color: #E4F3EE !important;
+    }
+  }
 
-    :root {
-      --bg:       #0E1613;
-      --ink:      #E4F3EE;
-      --accent:   #00BD78;
-      --accent-bg:#14352A;
-      --border:   #1F3A30;
-      --mint:     #00BD78;
-      --muted:    #8FA59C;
-      --paper:    #141D1A;
-      --shadow:   0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.35);
-    }
+  /* Manual dark override — wins over a system light preference. */
+  :root[data-theme="dark"] {
+    --bg: #0a1612;
+    --ink: #E4F3EE;
+    --accent: #00BD78;
+    --accent-bg: #0f2a1f;
+    --border: #1f3d2d;
+    --mint: #00BD78;
+    --muted: #7a9a8a;
+    --play-bg: #00BD78;
+    --play-text: #0a1612;
+    --seg-active-text: #0a1612;
+  }
 
-    * { box-sizing: border-box; }
-    html, body {
-      background: var(--bg);
-      color: var(--ink);
-      margin: 0;
-      padding: 0;
-      font-family: 'Literata', Georgia, 'Times New Roman', serif;
-      font-size: 16px;
-      line-height: 1.5;
-      text-wrap: pretty;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* Balance on headings — distributes words evenly across multiple lines */
-    h1, h2, h3, h4, h5, h6 {
-      text-wrap: balance;
-    }
+  /* (v50) Branded text selection. Browser default is blue/gray — feels
+     out of place once you've noticed the rest of the palette. Using the
+     accent color at full saturation for the background with the app's
+     bg color for the text reads as an inverted chip rather than a
+     highlight, which is the look the rest of t0ck goes for. ::selection
+     and ::-moz-selection both needed — they can't be combined into one
+     rule because either browser drops the entire rule if it doesn't
+     recognize the pseudo-element.
 
-    /* ---------- App shell ---------- */
-    .app {
-      max-width: 840px;
-      margin: 0 auto;
-      padding: 40px 32px 96px;
-    }
+     (v51) Added explicit input::selection / textarea::selection rules.
+     Some iOS Safari versions don't honor the general ::selection rule
+     inside input/textarea elements even though the spec says they should.
+     Making it explicit is belt-and-suspenders — no harm if the general
+     rule already covered it. Note: the gray pill magnifier / scrubber UI
+     iOS renders on top of number inputs is system chrome, not stylable
+     from CSS. That stays gray. Only the selected-text background within
+     the input itself can be themed. */
+  ::selection {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  ::-moz-selection {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  input::selection,
+  textarea::selection {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  input::-moz-selection,
+  textarea::-moz-selection {
+    background: var(--accent);
+    color: var(--bg);
+  }
 
-    .brand {
-      font-family: 'Space Mono', ui-monospace, monospace;
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 0.02em;
-      color: var(--ink);
-      text-decoration: none;
-      display: inline-block;
-    }
-    .brand .z { color: var(--accent); }
+  /* Branded keyboard-focus rings. :focus-visible fires only for keyboard
+     navigation (tab key), not mouse clicks — so the rings don't appear
+     after every tap. 2px offset so the ring doesn't hug the element. */
+  *:focus { outline: none; }
+  *:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  /* Pill-shaped elements need a matching pill focus ring. */
+  .play:focus-visible,
+  .settings-btn:focus-visible {
+    outline-offset: 3px;
+    border-radius: 999px;
+  }
+  .theme-toggle:focus-visible,
+  .modal-close:focus-visible {
+    border-radius: 50%;
+    outline-offset: 2px;
+  }
+  .seg:focus-visible {
+    outline-offset: 2px;
+    border-radius: 10px;
+  }
 
-    /* ---------- Hero ---------- */
-    .hero {
-      margin: 40px 0 48px;
-    }
-    .hero h1 {
-      font-family: 'Fraunces', 'Literata', Georgia, 'Times New Roman', serif;
-      font-variation-settings: "opsz" 144, "SOFT" 40;
-      font-size: clamp(36px, 6.5vw, 56px);
-      line-height: 1.03;
-      letter-spacing: -0.01em;
-      font-weight: 700;
-      margin: 0 0 16px;
-    }
-    .hero h1 .z { color: var(--accent); }
+  /* (v57) Disable double-tap-to-zoom on interactive elements.
+     Real bug Ron caught: tapping the + button twice in quick succession
+     (which is the natural way to bump BPM by 2) was triggering iOS's
+     double-tap-to-zoom gesture, magnifying the whole page. v55's
+     user-scalable=no doesn't prevent this on iOS Safari — that flag
+     only blocks pinch-zoom and focus-input-zoom, not double-tap-zoom.
+     touch-action: manipulation tells the browser "this element handles
+     its own taps, don't apply gesture recognizers like double-tap-zoom
+     or pan." The browser's tap delay (300ms wait to see if it's a
+     double-tap) also goes away as a bonus, so taps feel snappier. */
+  button,
+  .play, .seg, .theme-toggle, .modal-close, .settings-btn, .chord-btn,
+  .chord-svg .string-hit,
+  input, label, a {
+    touch-action: manipulation;
+  }
 
-    /* ---------- Intro narrative ---------- */
-    .hero-story {
-      margin: 24px 0 0;
-      font-size: 18px;
-      line-height: 1.6;
-      color: var(--ink);
-    }
-    .hero-story p {
-      margin: 0 0 14px;
-    }
-    .hero-story p:last-child {
-      margin-bottom: 0;
-    }
-    .hero-story .quote-inline {
-      color: var(--muted);
-      font-style: italic;
-    }
+  html, body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    /* Fallback for older browsers */
+    min-height: 100vh;
+    /* Dynamic viewport: adapts to browser chrome (toolbar) on iOS/Android
+       so the footer buttons never hide under the bottom bar. */
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-    /* ---------- Section label ---------- */
-    .section-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 48px 0 16px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-      font-weight: 700;
-    }
+  body {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    /* Respect iOS safe area (home indicator bar) so footer buttons stay
+       above it on notched/bezel-less phones. Uses max() so desktop/other
+       platforms keep the standard 24px and mobile gets whatever the
+       system reports, whichever is bigger. */
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+    max-width: 560px;
+    margin: 0 auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    /* (v56) Belt-and-suspenders horizontal overflow guard. The BPM input
+       fix in this version should be enough on its own, but if anything
+       else ever overflows (a long URL, a future widget, an off-by-one
+       calculation), at least iOS won't let the user rubber-band-scroll
+       the whole page sideways — which on tap, looks like the page is
+       jumping when really it's just snapping back. */
+    overflow-x: hidden;
+  }
+  html {
+    overflow-x: hidden;
+  }
 
-    /* ---------- App grid ---------- */
-    .apps-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-    @media (max-width: 640px) {
-      .app { padding: 32px 20px 64px; }
-      .apps-grid { grid-template-columns: 1fr; }
-    }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
 
-    .app-card {
-      display: block;
-      background: var(--paper);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px 22px;
-      text-decoration: none;
-      color: var(--ink);
-      transition: border-color .15s, transform .05s, box-shadow .15s;
-      position: relative;
-    }
-    .app-card.live:hover {
-      border-color: var(--accent);
-      box-shadow: var(--shadow);
-      transform: translateY(-1px);
-    }
-    .app-card.wip {
-      cursor: default;
-    }
+  .brand {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  /* (v06) Inner zeros render in accent green — applies the 0fam wordmark
+     rule from the brand spec ("the 0 renders in --accent while other
+     letters stay in --ink"). Mirrors the treatment in t0ck v59 (same
+     .zero class name) and the OG image. */
+  .brand .zero {
+    color: var(--accent);
+  }
 
-    /* Featured card — spans full grid width with bigger typography */
-    .app-card.featured {
-      grid-column: 1 / -1;
-      padding: 28px 30px;
-    }
-    .app-card.featured .app-wordmark {
-      font-size: 32px;
-      margin-bottom: 8px;
-    }
-    .app-card.featured .app-desc {
-      font-size: 15px;
-      margin-bottom: 16px;
-    }
+  .version {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
 
-    .app-wordmark {
-      font-family: 'Space Mono', ui-monospace, monospace;
-      font-weight: 700;
-      font-size: 22px;
-      letter-spacing: 0.01em;
-      margin-bottom: 6px;
-      line-height: 1.1;
-    }
-    .app-wordmark .z { color: var(--accent); }
+  /* (v35) Removed jitter-indicator CSS — no longer needed since the
+     rendered-file engine has no JS-observable timing drift. */
 
-    .app-desc {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.55;
-      margin: 0 0 14px;
-    }
+  .header-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 
-    .app-status {
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 700;
-      display: inline-block;
-      padding: 4px 9px;
-      border-radius: 4px;
-    }
-    .app-status.live {
-      background: var(--accent-bg);
-      color: var(--accent);
-    }
-    .app-status.wip {
-      background: transparent;
-      color: var(--muted);
-      border: 1px solid var(--border);
-    }
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 120ms, color 120ms, border-color 120ms;
+  }
 
-    /* ---------- About ---------- */
-    .about {
-      margin-top: 56px;
-      padding-top: 28px;
-      border-top: 1px solid var(--border);
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.65;
-      max-width: 620px;
-    }
-    .about p {
-      margin: 0 0 10px;
-    }
-    .about p:last-child { margin-bottom: 0; }
-    .about a {
-      color: var(--ink);
-      text-decoration: underline;
-      text-decoration-color: var(--border);
-      transition: text-decoration-color .15s;
-    }
-    .about a:hover {
-      text-decoration-color: var(--accent);
-    }
+  .theme-toggle:hover {
+    background: var(--accent-bg);
+    color: var(--accent);
+    border-color: var(--accent);
+  }
 
-    /* ---------- Footer ---------- */
-    .footer-meta {
-      margin-top: 40px;
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      text-align: center;
-      letter-spacing: 0.02em;
-    }
-    .footer-meta .version {
-      display: block;
-      margin-top: 4px;
-      font-variant-numeric: tabular-nums;
-      opacity: 0.7;
-      user-select: all;
-    }
-  </style>
+  .theme-toggle:active { transform: scale(0.92); }
+
+  .theme-toggle svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Show only the icon for the theme the button will switch TO.
+     html[data-theme="light"] → user sees moon (clicking goes to dark).
+     html[data-theme="dark"]  → user sees sun  (clicking goes to light). */
+  .theme-toggle .theme-icon { display: none; }
+  html[data-theme="light"] .theme-toggle .theme-icon-dark  { display: block; }
+  html[data-theme="dark"]  .theme-toggle .theme-icon-light { display: block; }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    padding: 32px 0;
+  }
+
+  /* (v02) .beats / .beat-dot CSS removed — superseded by .strings /
+     .string-dot for the tuner. See the tuner-specific block below. */
+
+  /* (v02) .bpm-display / .bpm-number / .bpm-label / .bpm-controls / .nudge
+     / .tap CSS removed — metronome-only classes. The tuner uses
+     .note-display / .note-text / .meter-* defined in the tuner block. */
+
+  .play {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 18px 0;
+    width: 100%;
+    max-width: 320px;
+    background: var(--play-bg);
+    color: var(--play-text);
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 120ms, transform 80ms;
+  }
+
+  .play:hover { opacity: 0.92; }
+  .play:active { transform: scale(0.985); }
+
+  .play.playing {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  footer {
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .settings-btn + .settings-btn::before {
+    content: '·';
+    color: var(--border);
+    margin-right: 4px;
+    pointer-events: none;
+  }
+
+  .settings-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .settings-btn:hover { color: var(--accent); }
+
+  .settings-btn .gear {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+  }
+
+  .hint {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 8px;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+
+  .hint kbd {
+    display: inline-block;
+    padding: 1px 5px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    margin: 0 2px;
+  }
+
+  /* ---------- settings modal ---------- */
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    /* Transition transform AND visibility. visibility has a delay so on
+       close, the modal slides away first (260ms), then becomes hidden.
+       On open, the .open class overrides with delay: 0 so visibility
+       flips immediately and the slide-up animation plays while visible. */
+    transition: transform 260ms cubic-bezier(0.32, 0.72, 0, 1),
+                visibility 0s linear 260ms;
+    overflow-y: auto;
+    visibility: hidden;
+  }
+
+  .modal.open {
+    transform: translateY(0);
+    visibility: visible;
+    transition: transform 260ms cubic-bezier(0.32, 0.72, 0, 1),
+                visibility 0s linear 0s;
+  }
+
+  .modal-inner {
+    max-width: 560px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
+  }
+
+  .modal-title {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .modal-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--ink);
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background 120ms, border-color 120ms;
+  }
+
+  .modal-close:hover {
+    background: var(--accent-bg);
+    border-color: var(--accent);
+  }
+
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    /* Auto top + bottom margins would center the body geometrically,
+       but true geometric center reads as slightly bottom-heavy on tall
+       viewports. Adding padding-bottom makes the body taller, which
+       shrinks the auto margins, which pulls the visible content UP.
+       Half the padding-bottom translates to the visual nudge amount
+       (96px padding → ~48px upward shift). Past the standard optical-
+       centering range, but the body is small relative to a tall
+       viewport — small blocks need stronger biases to feel centered.
+       On short viewports where auto margins are already 0, padding-bottom
+       just reads as trailing whitespace and the layout stays natural. */
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-bottom: 96px;
+    width: 100%;
+  }
+
+  .group-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .segments {
+    display: flex;
+    gap: 8px;
+  }
+
+  /* (v03) .segments.grid — used when the preset list grows past ~5 items
+     (instrument picker now has 8 presets including mandolin / banjo / cello).
+     Auto-fit lets wider screens keep a single row; narrow screens wrap into
+     2–3 rows without any media-query branching. minmax(86px, 1fr) gives each
+     pill enough room for the longest label (Chromatic / Mandolin) without
+     truncating. */
+  .segments.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(86px, 1fr));
+    gap: 8px;
+  }
+
+  .seg {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 14px 4px;
+    min-height: 48px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--ink);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 120ms, border-color 120ms, color 120ms, transform 80ms;
+  }
+
+  .seg:hover {
+    background: var(--accent-bg);
+    border-color: var(--accent);
+  }
+
+  .seg:active { transform: scale(0.96); }
+
+  .seg.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--seg-active-text);
+  }
+
+  .modal-footer-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    padding-top: 24px;
+    letter-spacing: 0.03em;
+  }
+
+  /* text-wrap: pretty balances line breaks and avoids widows/orphans on
+     the last line. Supported in Chromium 117+ / Safari 17.4+ / Firefox
+     coming. Non-supporting browsers silently fall back to normal wrap. */
+  .help-lead,
+  .help-note,
+  .help-about,
+  .modal-footer-note {
+    text-wrap: pretty;
+  }
+
+  /* ---------- help modal content ---------- */
+  .keymap, .urlmap {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 10px 20px;
+    align-items: center;
+  }
+
+  .keymap dt,
+  .urlmap dt {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--ink);
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .keymap dd,
+  .urlmap dd {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .urlmap dt code {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    background: var(--accent-bg);
+    color: var(--ink);
+    padding: 3px 8px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+  }
+
+  .help-lead {
+    font-size: 13px;
+    color: var(--ink);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+
+  .help-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+
+  .help-note code {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    background: var(--accent-bg);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--ink);
+  }
+
+  .help-about {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .help-about a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: border-color 120ms;
+  }
+
+  .help-about a:hover { border-bottom-color: var(--accent); }
+
+  @media (max-width: 420px) {
+    .note-text { font-size: 112px; }
+    body { padding: 18px; }
+    .modal-inner { padding: 18px; }
+    .seg { padding: 11px 3px; min-height: 44px; font-size: 12px; }
+    .segments { gap: 6px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .modal { transition: none; }
+    .string-dot { transition: none; }
+    .meter-needle { transition: none; }
+  }
+
+  /* ---------- t00n tuner-specific ---------- */
+
+  /* Note display — parallel to t0ck's .bpm-display. The letter is the
+     focal element; accidental (#) rides as superscript, octave sits
+     below as a quiet meta label (parallel to "BPM"). */
+  .note-display {
+    text-align: center;
+    user-select: none;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .note-text {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 148px;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 0.05em;
+    min-height: 0.9em;
+    transition: color 120ms;
+  }
+
+  .note-text.idle {
+    color: var(--muted);
+    font-size: 64px;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .note-accidental {
+    font-size: 0.45em;
+    margin-top: 0.12em;
+    font-weight: 700;
+  }
+
+  .note-octave {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  /* Cents meter — horizontal bar with a center line and a needle that
+     tracks deviation ±50¢. Visual language mirrors t0ck's beat-dot:
+     border color for neutral, accent for close, mint for in-tune. */
+  .meter-wrap {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .meter {
+    position: relative;
+    width: 100%;
+    height: 44px;
+    background: var(--accent-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .meter-center {
+    position: absolute;
+    left: 50%;
+    top: 8px; bottom: 8px;
+    width: 2px;
+    background: var(--accent);
+    transform: translateX(-50%);
+    z-index: 1;
+    border-radius: 1px;
+  }
+
+  .meter-tick {
+    position: absolute;
+    top: 14px; bottom: 14px;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .meter-needle {
+    position: absolute;
+    top: 6px; bottom: 6px;
+    width: 4px;
+    background: var(--ink);
+    border-radius: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: left 80ms ease-out, background 120ms, opacity 180ms;
+    z-index: 2;
+    opacity: 0;
+  }
+
+  .meter-needle.live { opacity: 1; }
+  .meter-needle.in-tune { background: var(--mint); }
+  .meter-needle.close { background: var(--accent); }
+
+  .meter-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    padding: 0 2px;
+  }
+
+  .cents-row {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+    min-height: 1.4em;
+    letter-spacing: 0.02em;
+  }
+
+  .cents-row .cents-val {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .cents-row .freq-val {
+    color: var(--muted);
+  }
+
+  /* String dots — reuse t0ck's .beats container for layout, but each
+     target is a dot + label stack so the user can see which string
+     they're on without memorizing standard tunings. */
+  .strings {
+    display: flex;
+    gap: 14px;
+    min-height: 32px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .string-tag {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .string-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid var(--border);
+    transition: transform 80ms ease-out, background 120ms, border-color 120ms;
+  }
+
+  .string-dot.target {
+    border-color: var(--accent);
+    background: var(--accent-bg);
+    transform: scale(1.35);
+  }
+
+  .string-dot.in-tune {
+    background: var(--mint);
+    border-color: var(--mint);
+    transform: scale(1.35);
+  }
+
+  .string-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  .string-tag.active .string-name {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  /* A4 reference input — styled like an inline segmented input, tighter
+     than a full .seg row since it's a single numeric field. */
+  .a4-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .a4-input {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 16px;
+    width: 4.5ch;
+    padding: 10px 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--ink);
+    border-radius: 8px;
+    text-align: center;
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+  .a4-input::-webkit-outer-spin-button,
+  .a4-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .a4-input:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    color: var(--accent);
+  }
+
+  .a4-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+
+  /* Mic-permission / status line under the play button. Same vertical
+     slot as t0ck's kbd hint, but this row can carry error/status copy
+     when the mic is unavailable or still listening. */
+  .tuner-status {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    min-height: 1.4em;
+    letter-spacing: 0.02em;
+  }
+  .tuner-status.error { color: var(--ink); }
+
+  /* ---------- chord drawer (v03) ---------- */
+
+  /* Scope .chords-body to unhook the padding-bottom:96px optical-centering
+     rule from the generic .modal-body — the chord drawer has enough content
+     that centering pulls the first group below the fold. */
+  .modal-body.chords-body {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 24px;
+  }
+
+  /* Horizontal fretboard diagram for the tuning section. The mental model:
+     "this is what your instrument actually looks like when you hold it" —
+     headstock on the left, body on the right, thickest string on top. SVG
+     keeps it crisp at any size and lets the same renderer handle 4/5/6/8
+     strings without a flex/grid layout fight.
+
+     The diagram is intentionally schematic, not realistic — solid strings
+     of varying thickness, a few fret lines as reference, no headstock
+     decoration. The goal is "which string is which," not "looks like a
+     guitar." Pairs cleanly with the chord diagrams below, which read in
+     standard chord-chart orientation (low pitch on the left). The two
+     visualizations have different jobs and different shapes, so the
+     orientation difference reinforces "different thing" rather than
+     reading as inconsistency. */
+  .fretboard {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 4px;
+  }
+  .fretboard .nut         { stroke: var(--ink); stroke-width: 2.5; }
+  .fretboard .fret        { stroke: var(--border); stroke-width: 1; }
+  .fretboard .string-line { stroke: var(--ink); stroke-linecap: round; }
+  .fretboard .peg         { fill: var(--accent-bg); stroke: var(--ink); stroke-width: 1.2; }
+  .fretboard .peg-line    { stroke: var(--ink); stroke-width: 1; }
+  .fretboard .nut-label   {
+    fill: var(--ink);
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 11px;
+  }
+  .fretboard .nut-hz {
+    fill: var(--muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+  }
+  .fretboard .string-num {
+    fill: var(--muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+  }
+  .fretboard .drone-peg   { fill: var(--mint); stroke: var(--ink); stroke-width: 1.2; }
+  .fretboard .drone-line  { stroke: var(--mint); stroke-linecap: round; }
+
+  /* Two-line footer note — bold heading line, lighter body line. Replaces
+     the single-sentence layout that wrapped awkwardly on phones. */
+  .modal-footer-note {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-start;
+  }
+  .footer-note-title {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--ink);
+    letter-spacing: 0;
+  }
+  .footer-note-body {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* Chord grid — fixed-width cards that wrap responsively. 128px per card
+     leaves room for a comfortable 5-string / 6-string diagram plus name and
+     open/muted markers without feeling crowded. */
+  /* (v07) 2-column chord grid at every breakpoint. Was auto-fit minmax
+     which produced 4 columns on phones at small sizes. Two-wide gives
+     each diagram ~2× the visual area at the size that matters most for
+     legibility (phone), preserves a "page of chord book" reading model
+     (one chord at a time, not a wall), and handles odd chord counts
+     more gracefully (5 chords → 2-2-1 instead of an orphan in row 2). */
+  .chord-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .chord-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: transparent;
+  }
+
+  .chord-name {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  /* SVG fills the card width; viewBox preserves the diagram's aspect
+     ratio. This is the difference between v06 and v07 — old code set
+     explicit pixel width/height on the SVG element, so diagrams stayed
+     small even when cards grew. Now they scale up to fill the column. */
+  .chord-svg {
+    width: 100%;
+    height: auto;
+    max-width: 180px;
+  }
+  .chord-svg .fret-line,
+  .chord-svg .string-line { stroke: var(--border); }
+  .chord-svg .nut          { stroke: var(--ink); }
+  .chord-svg .dot          { fill: var(--ink); }
+  .chord-svg .dot-text     { fill: var(--bg); font-family: 'Inter', sans-serif; font-weight: 700; font-size: 11px; }
+  .chord-svg .open-o       { fill: none; stroke: var(--ink); }
+  .chord-svg .mute-x       { stroke: var(--muted); }
+  .chord-svg .string-label { fill: var(--muted); font-family: 'Space Mono', monospace; font-size: 11px; }
+  .chord-svg .drone-mark   { fill: var(--muted); font-family: 'Space Mono', monospace; font-size: 9px; }
+
+  /* (v08) String hit-rectangles for tap-to-play. Invisible by default
+     (transparent fill in the SVG), but cursor:pointer signals
+     interactivity on hover, and a faint accent fill on hover/active
+     gives visual feedback that the tap registered. */
+  .chord-svg .string-hit {
+    cursor: pointer;
+    transition: fill 80ms;
+  }
+  .chord-svg .string-hit:hover  { fill: var(--accent-bg); }
+  .chord-svg .string-hit:active { fill: var(--accent); fill-opacity: 0.18; }
+
+  /* (v08) Chord action buttons — pair of small pills below each diagram.
+     Quiet styling: outline only at rest, accent fill on hover/active so
+     the diagram remains the dominant visual element. Touch-friendly
+     min-height. */
+  .chord-actions {
+    display: flex;
+    gap: 6px;
+    width: 100%;
+    margin-top: 2px;
+  }
+
+  .chord-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 32px;
+    padding: 6px 8px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 120ms, border-color 120ms, color 120ms;
+  }
+
+  .chord-btn:hover {
+    background: var(--accent-bg);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .chord-btn:active { transform: scale(0.97); }
+
+  .chord-btn svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+  }
+
+  .chord-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+</style>
 </head>
-<body style="background:#0E1613;color:#E4F3EE;margin:0;">
-  <div class="app">
-    <a class="brand" href="./"><span class="z">0</span>utput</a>
+<body style="background:#F9F9F9;color:#034D32">
 
-    <section class="hero">
-      <h1>Small, f<span class="z">o</span>cused apps.</h1>
-      <div class="hero-story">
-        <p>I'm a dude with a thousand ideas.</p>
-        <p><span class="quote-inline">"Yeah, that'd be awesome! When you gonna build it?"</span> has always been the response. FAIR!</p>
-        <p>But here I am! Little apps seeing the light of day. Things for fun. Stuff you can use. Or play with. Or just make your dad laugh.</p>
-      </div>
-    </section>
+<header>
+  <div class="brand">t<span class="zero">00</span>n</div>
+  <div class="header-meta">
+    <span class="version">v09 · 20260427</span>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+      <!-- Lucide sun + moon paths, 24-viewBox, 18×18 rendered, stroke-width 2.
+           Shown via CSS based on html[data-theme]: light theme shows the
+           moon (button switches TO dark), dark theme shows the sun.
+           Pattern adopted from c0nvert.app for consistency across 0fam apps. -->
+      <svg class="theme-icon theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2"/>
+        <path d="M12 20v2"/>
+        <path d="m4.93 4.93 1.41 1.41"/>
+        <path d="m17.66 17.66 1.41 1.41"/>
+        <path d="M2 12h2"/>
+        <path d="M20 12h2"/>
+        <path d="m6.34 17.66-1.41 1.41"/>
+        <path d="m19.07 4.93-1.41 1.41"/>
+      </svg>
+      <svg class="theme-icon theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+  </div>
+</header>
 
-    <div class="section-label">Live</div>
-    <div class="apps-grid">
-      <a class="app-card live featured" href="https://t0ck.app" target="_blank" rel="noopener">
-        <div class="app-wordmark">t<span class="z">0</span>ck</div>
-        <p class="app-desc">Web metronome. Tap tempo, time signatures, four click sounds.</p>
-        <span class="app-status live">Live · t0ck.app</span>
-      </a>
-      <a class="app-card live featured" href="https://d00r.app" target="_blank" rel="noopener">
-        <div class="app-wordmark">d<span class="z">0</span><span class="z">0</span>r</div>
-        <p class="app-desc">Branded timelines for processes and projects. For anyone explaining what happens when.</p>
-        <span class="app-status live">Beta · d00r.app</span>
-      </a>
-      <a class="app-card live featured" href="https://marg0.app" target="_blank" rel="noopener">
-        <div class="app-wordmark">marg<span class="z">0</span></div>
-        <p class="app-desc">Test your reading speed across 18 fonts. Find the one your brain reads fastest.</p>
-        <span class="app-status live">Live · marg0.app</span>
-      </a>
-      <a class="app-card live" href="https://f0rtune500.app" target="_blank" rel="noopener">
-        <div class="app-wordmark">f<span class="z">0</span>rtune5<span class="z">0</span><span class="z">0</span></div>
-        <p class="app-desc">Your resume, but at defunct American companies.</p>
-        <span class="app-status live">Live · f0rtune500.app</span>
-      </a>
-      <a class="app-card live" href="https://t00t.app" target="_blank" rel="noopener">
-        <div class="app-wordmark">t<span class="z">0</span><span class="z">0</span>t</div>
-        <p class="app-desc">A fart soundboard. Tap to toot.</p>
-        <span class="app-status live">Live · t00t.app</span>
-      </a>
-    </div>
+<main>
+  <div class="strings" id="strings"></div>
 
-    <div class="section-label">In Progress</div>
-    <div class="apps-grid">
-      <div class="app-card wip featured">
-        <div class="app-wordmark">b<span class="z">0</span>ng<span class="z">0</span></div>
-        <p class="app-desc">A browser-based music playground. Chords, bass, lead, drums, pad — jam in the browser.</p>
-        <span class="app-status wip">In Progress</span>
-      </div>
-      <div class="app-card wip">
-        <div class="app-wordmark">b<span class="z">0</span>p</div>
-        <p class="app-desc">Song links that work on any streaming service.</p>
-        <span class="app-status wip">In Progress</span>
-      </div>
-      <div class="app-card wip">
-        <div class="app-wordmark">st<span class="z">0</span>rm</div>
-        <p class="app-desc">Guided brainstorming with decision trees.</p>
-        <span class="app-status wip">In Progress</span>
-      </div>
-    </div>
-
-    <div class="about">
-      <p><strong style="color:var(--ink);font-weight:600;">0utput</strong> is the company. <strong style="color:var(--ink);font-weight:600;">0fam</strong> is the family of apps. Every name drops a letter for a zero — no individual logos, the typography is the identity.</p>
-      <p>Built by <a href="https://rontheron.com" target="_blank" rel="noopener">Ron Seidel</a>. Press and partnerships: <a href="mailto:hello@0utput.co">hello@0utput.co</a>.</p>
-      <p>Like these apps? <a href="https://ko-fi.com/ronseidel" target="_blank" rel="noopener">Leave a tip ☕</a></p>
-    </div>
-
-    <div class="footer-meta">
-      <span class="version">v20260424-24</span>
-    </div>
+  <div class="note-display">
+    <div class="note-text idle" id="noteText">—</div>
+    <div class="note-octave" id="noteOctave">awaiting signal</div>
   </div>
 
-  <script>
-  // --- Dark mode runtime enforcement (per 0fam HTML rule) ---
-  // 0utput.co is dark-only. This ensures the page stays dark even if
-  // CSS variables fail to apply, a browser extension injects styles,
-  // or a caching layer serves a stale stylesheet. Sets inline styles
-  // on documentElement + body so nothing short of !important overrides
-  // them.
-  (function () {
-    const BG = '#0E1613';
-    const FG = '#E4F3EE';
-    document.documentElement.style.background = BG;
-    document.documentElement.style.color = FG;
-    document.documentElement.style.colorScheme = 'dark';
-    document.body.style.background = BG;
-    document.body.style.color = FG;
+  <div class="meter-wrap">
+    <div class="meter" id="meter">
+      <div class="meter-tick" style="left:25%"></div>
+      <div class="meter-tick" style="left:50%"></div>
+      <div class="meter-tick" style="left:75%"></div>
+      <div class="meter-center"></div>
+      <div class="meter-needle" id="meterNeedle"></div>
+    </div>
+    <div class="meter-labels">
+      <span>−50¢</span><span>0</span><span>+50¢</span>
+    </div>
+    <div class="cents-row" id="centsRow">&nbsp;</div>
+  </div>
+
+  <button class="play" id="play">Start listening</button>
+
+  <div class="tuner-status" id="status">&nbsp;</div>
+</main>
+
+<footer>
+  <button class="settings-btn" id="openSettings">
+    <span class="gear">◉</span> Settings
+  </button>
+  <button class="settings-btn" id="openChords">
+    <span class="gear">♪</span> Chords
+  </button>
+  <button class="settings-btn" id="openHelp">
+    <span class="gear">?</span> Help
+  </button>
+</footer>
+
+<!-- ---------- settings modal ---------- -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-inner">
+    <div class="modal-header">
+      <h2 class="modal-title" id="modalTitle">Settings</h2>
+      <button class="modal-close" id="closeSettings" aria-label="Close settings">×</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="group">
+        <div class="group-label">Instrument</div>
+        <div class="segments grid" data-group="inst" role="radiogroup" aria-label="Instrument preset">
+          <button class="seg" data-value="chromatic" role="radio">Chromatic</button>
+          <button class="seg" data-value="guitar" role="radio">Guitar</button>
+          <button class="seg" data-value="bass" role="radio">Bass</button>
+          <button class="seg" data-value="ukulele" role="radio">Ukulele</button>
+          <button class="seg" data-value="violin" role="radio">Violin</button>
+          <button class="seg" data-value="mandolin" role="radio">Mandolin</button>
+          <button class="seg" data-value="banjo" role="radio">Banjo</button>
+          <button class="seg" data-value="cello" role="radio">Cello</button>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="group-label">A4 reference</div>
+        <div class="segments" data-group="a4" role="radiogroup" aria-label="A4 reference frequency">
+          <button class="seg" data-value="432" role="radio">432 Hz</button>
+          <button class="seg" data-value="440" role="radio">440 Hz</button>
+          <button class="seg" data-value="442" role="radio">442 Hz</button>
+          <button class="seg" data-value="444" role="radio">444 Hz</button>
+        </div>
+      </div>
+
+      <div class="modal-footer-note">
+        Changes apply live. Close when you're done.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ---------- help modal ---------- -->
+<div class="modal" id="helpModal" role="dialog" aria-modal="true" aria-labelledby="helpTitle" aria-hidden="true">
+  <div class="modal-inner">
+    <div class="modal-header">
+      <h2 class="modal-title" id="helpTitle">Help</h2>
+      <button class="modal-close" id="closeHelp" aria-label="Close help">×</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="group">
+        <div class="group-label">Keyboard shortcuts</div>
+        <dl class="keymap">
+          <dt><kbd>space</kbd></dt>             <dd>Start / stop listening</dd>
+          <dt><kbd>S</kbd></dt>                 <dd>Open settings</dd>
+          <dt><kbd>C</kbd></dt>                 <dd>Open chord reference</dd>
+          <dt><kbd>?</kbd></dt>                 <dd>Open help</dd>
+          <dt><kbd>esc</kbd></dt>               <dd>Close any dialog</dd>
+        </dl>
+      </div>
+
+      <div class="group">
+        <div class="group-label">Bookmarkable URLs</div>
+        <p class="help-lead">Every URL carries an instrument preset and optional A4 reference. Bookmark tunings and open whichever you need.</p>
+        <dl class="urlmap">
+          <dt><code>t00n.app/guitar</code></dt>     <dd>Guitar, A4=440</dd>
+          <dt><code>t00n.app/bass/442</code></dt>   <dd>Bass, A4=442 Hz</dd>
+          <dt><code>t00n.app/ukulele</code></dt>    <dd>Ukulele tuning</dd>
+          <dt><code>t00n.app/violin</code></dt>     <dd>Violin tuning</dd>
+          <dt><code>t00n.app/432</code></dt>        <dd>Chromatic, A4=432 Hz</dd>
+        </dl>
+        <p class="help-note">A4 reference is in Hz (400–480 range). Preset and reference can appear in either order. <code>#</code> works too if your host strips paths.</p>
+      </div>
+
+      <div class="group">
+        <div class="group-label">About</div>
+        <p class="help-about">t00n is part of <a href="https://0utput.co" target="_blank" rel="noopener">0fam</a>&nbsp;— a family of small, focused web apps from&nbsp;0utput. Pitch detection runs locally in your browser; audio never leaves your device. No accounts, no ads, no&nbsp;tracking.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ---------- chords drawer ---------- -->
+<div class="modal" id="chordsModal" role="dialog" aria-modal="true" aria-labelledby="chordsTitle" aria-hidden="true">
+  <div class="modal-inner">
+    <div class="modal-header">
+      <h2 class="modal-title" id="chordsTitle">Chords</h2>
+      <button class="modal-close" id="closeChords" aria-label="Close chords">×</button>
+    </div>
+
+    <div class="modal-body chords-body">
+      <div class="group">
+        <div class="segments" data-group="chord-inst" role="radiogroup" aria-label="Chord reference instrument">
+          <button class="seg" data-value="guitar" role="radio">Guitar</button>
+          <button class="seg" data-value="ukulele" role="radio">Ukulele</button>
+          <button class="seg" data-value="mandolin" role="radio">Mandolin</button>
+          <button class="seg" data-value="banjo" role="radio">Banjo</button>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="group-label" id="tuningLabel">Tuning</div>
+        <div id="tuningDiagram"></div>
+      </div>
+
+      <div class="group">
+        <div class="group-label">Beginner chords</div>
+        <div class="chord-grid" id="chordGrid"></div>
+      </div>
+
+      <div class="modal-footer-note" id="chordFooterNote">
+        <strong class="footer-note-title">Tap to hear</strong>
+        <span class="footer-note-body">Tap a string to hear it. Use block / strum to hear the whole chord.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// t00n — instrument tuner · an 0fam app
+// ----------------------------------------------------------------------------
+// Piggy-backed on t0ck: header, footer, theme toggle, modal component,
+// segments, focus rings, ::selection, iOS input patterns, CSS var system,
+// localStorage-prefs pattern, URL routing pattern — all ported verbatim.
+// Swapped out: the scheduler / audio engine / tap tempo / BPM state. Swapped
+// in: getUserMedia mic capture, AnalyserNode, autocorrelation pitch detection.
+//
+// CHANGELOG
+// v01 (2026-04-24) — standalone prototype: autocorrelation pitch detection,
+//                    instrument presets, A4 reference, cents meter. Used its
+//                    own minimal shell (not aligned with t0ck).
+// v02 (2026-04-24) — rebuild on t0ck v57 shell. Ported theme system, modal
+//                    component, segments UI, focus rings, iOS input quirks.
+//                    Settings modal: Instrument + A4 reference. Help modal:
+//                    keymap + bookmarkable URL schema + About. localStorage
+//                    key t00n-state (instrument, a4 only — no volatile state).
+//                    URL routing: t00n.app/guitar, /bass/442, /432, etc.
+//                    String dots reuse t0ck's beat-dot visual language —
+//                    border for target, filled mint when in tune.
+// v03 (2026-04-24) — chord drawer: third footer button (Chords) opens a
+//                    modal with tuning diagram + 5 beginner chord shapes
+//                    per instrument, rendered as SVG. Covers guitar, uke,
+//                    mandolin, banjo. Added mandolin (GDAE, same pitches
+//                    as violin but separate preset for label clarity),
+//                    banjo (open G: gDGBD), and cello (CGDA) as tuner
+//                    presets — 8 presets total. Instrument segments
+//                    switched from single-row flex to .segments.grid
+//                    (auto-fit minmax) so they wrap gracefully on phones.
+//                    Chord data for banjo / mandolin validated against
+//                    published chord charts before shipping.
+// v04 (2026-04-24) — feedback pass:
+//                    1) Dropped the keymap hint row from the main screen.
+//                       The three footer buttons advertise S/C/? already
+//                       and `space` is universal; the hint added clutter
+//                       without aiding discovery on a single-action app.
+//                    2) Replaced the row-of-pills tuning diagram with a
+//                       horizontal fretboard SVG: head-on-left, body-on-
+//                       right, thickest string on top, varying string
+//                       thickness, headstock peg + label per string,
+//                       string number on the right. The mental model is
+//                       "this is what your instrument looks like when you
+//                       hold it" — readable without knowing what
+//                       "EADGBE" or "high-to-low" means. Banjo's 5th-
+//                       string drone is rendered as a separate mint-
+//                       colored segment attaching past fret 4, mirroring
+//                       its physical position.
+//                    3) Restructured the footer note from a single
+//                       awkwardly-wrapping sentence to a two-line block:
+//                       bold heading + light body. Default copy:
+//                       "5 chords / Play 100s of songs. Move keys with a
+//                       capo." Banjo gets: "5th-string drone / Rings open
+//                       on G, C, Em. Mute on D7 and A."
+// v05 (2026-04-25) — branding pass:
+//                    1) New favicon: t00n-specific brand mark — vertical
+//                       ellipse (meter) with mint needle (the "in tune"
+//                       state). Mirrors the in-app cents meter and
+//                       follows c0nvert.app's mark-on-ink-square pattern
+//                       for visual consistency across 0fam apps. Adds
+//                       PNG fallback (favicon.png) and apple-touch-icon
+//                       links — drop those files at the web root on
+//                       deploy.
+//                    2) Theme toggle ported from c0nvert: Lucide sun +
+//                       moon as inline SVGs, swapped via CSS based on
+//                       html[data-theme]. Replaces the unicode ☾/☀
+//                       glyphs which rendered inconsistently across
+//                       platforms (especially iOS Safari, which
+//                       sometimes substituted color emoji).
+//                    3) OG image: created /og.png (1200x630) following
+//                       c0nvert's layout — wordmark + tagline + format
+//                       chips + "an 0fam app" subscript + brand mark.
+//                       Drop alongside favicon.png at the web root.
+//                    4) Refreshed meta description, OG, and Twitter copy
+//                       to reflect all 8 presets (added mandolin/banjo/
+//                       cello in v03) and the chord drawer (v03/v04).
+// v06 (2026-04-27) — wordmark color: the two zeros in the header "t00n"
+//                    wordmark now render in --accent (#028454) while the
+//                    "t" and "n" stay in --ink (#034D32). Matches the
+//                    0fam house-style accent-zero rule already shipped
+//                    in t0ck v59. Same .zero class name for consistency
+//                    across the family (every product substitutes a
+//                    zero for an o and paints it accent green to make
+//                    the substitution legible at a glance).
+// v07 (2026-04-27) — chord drawer: locked the chord grid to 2 columns
+//                    at every breakpoint (was auto-fit minmax which
+//                    produced 4-up on phones). Two-wide gives each
+//                    diagram ~2× the visual area at the size that
+//                    matters most for legibility, preserves a "page of
+//                    chord book" reading model, and handles odd chord
+//                    counts more gracefully (5 chords renders as 2-2-1
+//                    instead of an awkward 4+1 orphan). Diagrams now
+//                    fill the card width via SVG viewBox + CSS
+//                    width:100% (was explicit pixel sizing). Internal
+//                    grid spacing bumped 14→18px (strings) and 16→20px
+//                    (frets), with dots/markers/text scaled
+//                    proportionally so the encoded sizes look right
+//                    at the new card scale.
+// v08 (2026-04-27) — chord audio reference. Two interactions added:
+//                    (1) Block / Strum buttons on each chord card play
+//                    the chord through Web Audio. Strum staggers notes
+//                    30ms apart, low-to-high. Block plays simultaneously.
+//                    (2) Each playable string in the chord diagram is
+//                    now tappable — touches play just that note, so
+//                    learners can isolate which string is wrong on
+//                    their instrument. Muted strings (X) aren't
+//                    tappable; nothing to play. Synth tone is
+//                    deliberately plucky/sawtooth — sounds like a
+//                    synth, not a guitar — so reference and
+//                    user-played sound stay easy to tell apart. Lazy
+//                    AudioContext (separate from the mic context)
+//                    unlocks on first tap, which also satisfies iOS
+//                    Safari's user-gesture requirement. Active voices
+//                    are tracked and stopped on instrument switch or
+//                    drawer close so notes don't pile up. Footer note
+//                    updated: "Tap to hear / Tap a string to hear it.
+//                    Use block / strum to hear the whole chord."
+// v09 (2026-04-27) — iOS speaker fix. v08 worked on desktop and on
+//                    iOS WITH HEADPHONES, but iOS speakers were silent
+//                    — the same Web-Audio-on-speaker mute bug t0ck
+//                    spent 13 versions debugging. Ported t0ck's
+//                    iosSpeakerKeepalive module verbatim (v48/v53/v54
+//                    behavior preserved): a near-silent 3s WAV loops
+//                    on a hidden <audio> element, which keeps the iOS
+//                    speaker route open so Web Audio output reaches
+//                    the speaker too. Primed once on the first user
+//                    interaction anywhere on the page (one-shot
+//                    listener removes itself). Started before chord
+//                    audio fires; scheduled to stop after the last
+//                    note finishes decaying (NOTE_DECAY_S = 1.5s) —
+//                    stopping too early would clip the tail of the
+//                    chord. The keepalive's own 800ms grace period
+//                    absorbs rapid re-taps. iPhone audio session
+//                    indicator only lights up while audio is actually
+//                    playing. Non-iOS code paths are byte-identical to
+//                    v08 — isIOS() gates every keepalive call. Note
+//                    that the tuner mic capture path doesn't need
+//                    this fix; the bug only affects Web Audio OUTPUT
+//                    to the iOS speaker, and the tuner doesn't
+//                    produce output.
+
+(() => {
+  'use strict';
+
+  // ---------- constants ----------
+  const STORAGE_KEY = 't00n-state';
+  const NOTE_NAMES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+
+  // Scientific pitch notation. MIDI 69 = A4. Each preset lists strings from
+  // lowest-pitched first, which is the conventional way string players read
+  // tunings (6th string to 1st, etc.).
+  //
+  // Mandolin is GDAE — identical pitches to violin, but kept as a separate
+  // preset so the label matches what the player expects when picking up
+  // the instrument. (v04: consider folding into a single preset with a
+  // dual label if clutter becomes an issue.)
+  //
+  // Banjo is 5-string open G: gDGBD. The 5th string (lowercase g) is a
+  // short drone tuned to G4, the highest pitch — attached at the 5th fret,
+  // so it's not reachable during most chord work. Listed here in low-to-
+  // high pitch order for consistency with the other presets; the chord
+  // drawer shows it in conventional 4-3-2-1-drone order separately.
+  //
+  // Cello is CGDA — standard bowed tuning. Lowest note is C2 (~65 Hz),
+  // which pushes the autocorrelation buffer requirement up — see
+  // fftSizeForInstrument.
+  const PRESETS = {
+    chromatic: [],
+    guitar:    ['E2', 'A2', 'D3', 'G3', 'B3', 'E4'],
+    bass:      ['E1', 'A1', 'D2', 'G2'],
+    ukulele:   ['G4', 'C4', 'E4', 'A4'],
+    violin:    ['G3', 'D4', 'A4', 'E5'],
+    mandolin:  ['G3', 'D4', 'A4', 'E5'],
+    banjo:     ['D3', 'G3', 'B3', 'D4', 'G4'],
+    cello:     ['C2', 'G2', 'D3', 'A3'],
+  };
+
+  const A4_VALUES = [432, 440, 442, 444];
+  const DEFAULT_STATE = { instrument: 'chromatic', a4: 440 };
+
+  // ---------- DOM refs ----------
+  const el = {
+    strings:       document.getElementById('strings'),
+    noteText:      document.getElementById('noteText'),
+    noteOctave:    document.getElementById('noteOctave'),
+    meterNeedle:   document.getElementById('meterNeedle'),
+    centsRow:      document.getElementById('centsRow'),
+    status:        document.getElementById('status'),
+    play:          document.getElementById('play'),
+    themeToggle:   document.getElementById('themeToggle'),
+    modal:         document.getElementById('modal'),
+    helpModal:     document.getElementById('helpModal'),
+    openSettings:  document.getElementById('openSettings'),
+    closeSettings: document.getElementById('closeSettings'),
+    openHelp:      document.getElementById('openHelp'),
+    closeHelp:     document.getElementById('closeHelp'),
+  };
+
+  // ---------- state ----------
+  const state = Object.assign({}, DEFAULT_STATE);
+
+  // ---------- note math ----------
+  // MIDI 69 = A4. Frequency of MIDI n = a4 * 2^((n - 69) / 12).
+  // All math respects the user's current A4 reference, so 432/442/444 users
+  // get their expected note names instead of everything reading sharp or flat.
+  function freqToMidi(freq) {
+    return 69 + 12 * Math.log2(freq / state.a4);
+  }
+
+  function midiToName(midi) {
+    const rounded = Math.round(midi);
+    const name = NOTE_NAMES[((rounded % 12) + 12) % 12];
+    // MIDI octave convention: C4 (middle C) = MIDI 60, so octave = floor(n/12) - 1.
+    const octave = Math.floor(rounded / 12) - 1;
+    return { name, octave, rounded };
+  }
+
+  function noteStringToMidi(str) {
+    // 'E2' → 40, 'G#4' → 68, 'A4' → 69, etc.
+    const m = str.match(/^([A-G]#?)(-?\d+)$/);
+    if (!m) return null;
+    const idx = NOTE_NAMES.indexOf(m[1]);
+    return idx + (parseInt(m[2], 10) + 1) * 12;
+  }
+
+  // ---------- pitch detection (autocorrelation) ----------
+  // Autocorrelation is the standard for fundamental-frequency detection in
+  // tuners. FFT alone isn't great — it finds strong partials, which for
+  // pitched instruments are often the 2nd or 3rd harmonic, so the tuner
+  // reads an octave high. Time-domain autocorrelation finds the period
+  // directly, which is what we want.
+  //
+  // The parabolic interpolation at the end gives sub-sample accuracy on the
+  // lag — crucial at low frequencies. Without it, bass E (41 Hz) rounds to
+  // the nearest integer lag and cents readings jump in ~5¢ steps instead of
+  // being continuous.
+  function detectPitch(buf, sampleRate) {
+    const SIZE = buf.length;
+
+    // Gate silence via RMS. Below this threshold the signal is almost all
+    // ambient noise and pitch detection produces garbage.
+    let rms = 0;
+    for (let i = 0; i < SIZE; i++) rms += buf[i] * buf[i];
+    rms = Math.sqrt(rms / SIZE);
+    if (rms < 0.01) return -1;
+
+    // Trim leading/trailing near-silence. Attack/release tails dominate the
+    // autocorrelation if we don't chop them off.
+    const THRESH = 0.2;
+    let r1 = 0, r2 = SIZE - 1;
+    for (let i = 0; i < SIZE / 2; i++)      if (Math.abs(buf[i])         < THRESH) { r1 = i;        break; }
+    for (let i = 1; i < SIZE / 2; i++)      if (Math.abs(buf[SIZE - i])  < THRESH) { r2 = SIZE - i; break; }
+    const b = buf.slice(r1, r2);
+    const n = b.length;
+
+    // O(n²) ACF. Fine up to fftSize=2048 at 60fps on any device made this
+    // decade. If this ever becomes a bottleneck, FFT-based ACF is the
+    // optimization path.
+    const c = new Array(n).fill(0);
+    for (let lag = 0; lag < n; lag++) {
+      for (let i = 0; i < n - lag; i++) c[lag] += b[i] * b[i + lag];
+    }
+
+    // Skip the lag=0 peak (the signal autocorrelated with itself) by walking
+    // down past its trailing edge, then find the next maximum.
+    let d = 0;
+    while (d < n - 1 && c[d] > c[d + 1]) d++;
+    let maxVal = -1, maxIdx = -1;
+    for (let i = d; i < n; i++) {
+      if (c[i] > maxVal) { maxVal = c[i]; maxIdx = i; }
+    }
+    if (maxIdx <= 0) return -1;
+
+    // Parabolic interpolation through (maxIdx-1, maxIdx, maxIdx+1) for
+    // sub-sample lag precision.
+    let T0 = maxIdx;
+    const x1 = c[T0 - 1] || 0, x2 = c[T0], x3 = c[T0 + 1] || 0;
+    const a = (x1 + x3 - 2 * x2) / 2;
+    const bVal = (x3 - x1) / 2;
+    if (a !== 0) T0 = T0 - bVal / (2 * a);
+
+    return sampleRate / T0;
+  }
+
+  // ---------- rendering ----------
+  // SMOOTH controls how much we trust each new reading vs the running value.
+  // 0.3 is a sweet spot: needle doesn't jitter on vibrato, but responds fast
+  // enough to attack transients that the initial note reads correctly.
+  const SMOOTH = 0.3;
+  let smoothedFreq = 0;
+  let lastDetectedMidi = null;
+
+  function renderIdle() {
+    el.noteText.className = 'note-text idle';
+    el.noteText.textContent = '—';
+    el.noteOctave.textContent = isListening ? 'listening…' : 'awaiting signal';
+    el.centsRow.innerHTML = '&nbsp;';
+    el.meterNeedle.className = 'meter-needle';
+    el.meterNeedle.style.left = '50%';
+    lastDetectedMidi = null;
+    updateStringDots(null);
+  }
+
+  function renderPitch(freq) {
+    smoothedFreq = smoothedFreq === 0 ? freq : smoothedFreq + SMOOTH * (freq - smoothedFreq);
+    const midi = freqToMidi(smoothedFreq);
+    const { name, octave, rounded } = midiToName(midi);
+    const cents = Math.round((midi - rounded) * 100);
+
+    // Note readout. Accidental (#) rendered as superscript so the letter
+    // remains the dominant visual element.
+    const letter = name[0];
+    const accidental = name.length > 1 ? name[1] : '';
+    el.noteText.className = 'note-text';
+    el.noteText.innerHTML = letter +
+      (accidental ? '<span class="note-accidental">' + accidental + '</span>' : '');
+    el.noteOctave.textContent = 'octave ' + octave;
+
+    // Cents + frequency readout.
+    const absCents = Math.abs(cents);
+    const sign = cents > 0 ? '+' : (cents < 0 ? '−' : '');
+    el.centsRow.innerHTML =
+      '<span class="cents-val">' + sign + absCents + '¢</span>' +
+      ' · <span class="freq-val">' + smoothedFreq.toFixed(1) + ' Hz</span>';
+
+    // Meter needle: -50¢ → 0%, 0¢ → 50%, +50¢ → 100%. Clamp so off-scale
+    // readings park at the edge instead of flying off-screen.
+    const clampedCents = Math.max(-50, Math.min(50, cents));
+    const pct = ((clampedCents + 50) / 100) * 100;
+    el.meterNeedle.style.left = pct + '%';
+    el.meterNeedle.className = 'meter-needle live';
+    if (absCents <= 5)       el.meterNeedle.classList.add('in-tune');
+    else if (absCents <= 15) el.meterNeedle.classList.add('close');
+
+    lastDetectedMidi = rounded;
+    updateStringDots(rounded, absCents <= 5);
+  }
+
+  // ---------- string dots ----------
+  // Parallel to t0ck's renderBeats: build a dot per target string, then
+  // light up the one that matches the current detected note. Reuses the
+  // beat-dot visual language — border-color for "target", filled mint for
+  // "hit in tune" — so the two apps share a mental model.
+  function renderStrings() {
+    const strings = PRESETS[state.instrument];
+    el.strings.innerHTML = '';
+    strings.forEach(function (s) {
+      const tag = document.createElement('div');
+      tag.className = 'string-tag';
+      tag.dataset.midi = String(noteStringToMidi(s));
+      // Label uses just letter+accidental, no octave digit — octave is
+      // visible in the big display when playing, so labels stay uncluttered.
+      const labelNoteMatch = s.match(/^([A-G]#?)/);
+      const labelNote = labelNoteMatch ? labelNoteMatch[1] : s;
+      tag.innerHTML =
+        '<div class="string-dot"></div>' +
+        '<div class="string-name">' + labelNote + '</div>';
+      el.strings.appendChild(tag);
+    });
+    updateStringDots(lastDetectedMidi);
+  }
+
+  function updateStringDots(detectedMidi, inTune) {
+    inTune = !!inTune;
+    el.strings.querySelectorAll('.string-tag').forEach(function (tag) {
+      const midi = parseInt(tag.dataset.midi, 10);
+      const dot = tag.querySelector('.string-dot');
+      const isTarget = detectedMidi !== null && midi === detectedMidi;
+      dot.className = 'string-dot';
+      tag.classList.remove('active');
+      if (isTarget) {
+        tag.classList.add('active');
+        dot.classList.add(inTune ? 'in-tune' : 'target');
+      }
+    });
+  }
+
+  // ---------- mic + analyser ----------
+  let audioCtx = null;
+  let analyser = null;
+  let mediaStream = null;
+  let rafId = null;
+  let isListening = false;
+
+  // Autocorrelation accuracy depends on how many periods of the fundamental
+  // fit in the sample buffer. At 44.1kHz:
+  //   2048 samples = 46ms → ≥2 periods above ~44 Hz   (violin/uke/chrom/mando/banjo)
+  //   4096 samples = 93ms → ≥2 periods above ~22 Hz   (guitar E2 82Hz, cello C2 65Hz)
+  //   8192 samples = 186ms → ≥2 periods above ~11 Hz  (bass E1 41Hz)
+  // Validated empirically with synthetic sines: 2048 drifts ~13¢ on bass E1,
+  // 4096 drifts ~3¢, 8192 drifts ~1¢. Scaling up globally would add CPU and
+  // latency for instruments that don't need it, so we match the buffer to
+  // the lowest note in each preset.
+  function fftSizeForInstrument(inst) {
+    if (inst === 'bass') return 8192;
+    if (inst === 'guitar' || inst === 'chromatic' || inst === 'cello') return 4096;
+    return 2048;
+  }
+
+  async function startListening() {
+    setStatus('requesting mic…');
+    try {
+      // echoCancellation / autoGainControl / noiseSuppression all default
+      // to ON. For speech they help; for pitch detection they're disastrous
+      // — AGC rides the level so attack transients get crushed, and echo
+      // cancellation can mangle sustained tones. Explicitly disable.
+      mediaStream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: false,
+          autoGainControl: false,
+          noiseSuppression: false,
+        }
+      });
+
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      // iOS Safari often hands back a suspended context even when triggered
+      // from a user gesture. resume() is a no-op if already running.
+      if (audioCtx.state === 'suspended') await audioCtx.resume();
+
+      const source = audioCtx.createMediaStreamSource(mediaStream);
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = fftSizeForInstrument(state.instrument);
+      source.connect(analyser);
+
+      isListening = true;
+      el.play.textContent = 'Stop';
+      el.play.classList.add('playing');
+      smoothedFreq = 0;
+      setStatus('');
+      renderIdle();
+      tick();
+    } catch (err) {
+      console.error('[t00n] mic error', err);
+      if (err.name === 'NotAllowedError') {
+        setStatus('mic permission denied — check browser settings', true);
+      } else if (err.name === 'NotFoundError') {
+        setStatus('no microphone detected', true);
+      } else {
+        setStatus('couldn\u2019t access mic: ' + (err.message || err.name), true);
+      }
+    }
+  }
+
+  function stopListening() {
+    isListening = false;
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = null;
+    // Release the mic indicator cleanly — without stopping tracks, iOS
+    // and some desktop browsers keep the mic indicator lit even after
+    // closing the audio context.
+    if (mediaStream) mediaStream.getTracks().forEach(function (t) { t.stop(); });
+    if (audioCtx)    audioCtx.close();
+    mediaStream = null; analyser = null; audioCtx = null;
+    el.play.textContent = 'Start listening';
+    el.play.classList.remove('playing');
+    smoothedFreq = 0;
+    renderIdle();
+  }
+
+  function tick() {
+    if (!isListening || !analyser) return;
+    const buf = new Float32Array(analyser.fftSize);
+    analyser.getFloatTimeDomainData(buf);
+    const freq = detectPitch(buf, audioCtx.sampleRate);
+
+    // 40–4000 Hz covers everything musical from a low bass B0 (31 Hz, just
+    // outside) to a piccolo high C (4186 Hz, just outside). Low B on a 5-
+    // string bass (~31 Hz) is below the useful range of this algorithm —
+    // flag for v03 with a larger fftSize on bass preset.
+    if (freq > 40 && freq < 4000) {
+      renderPitch(freq);
+    } else if (smoothedFreq) {
+      smoothedFreq = 0;
+      renderIdle();
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function setStatus(txt, isError) {
+    el.status.textContent = txt || '\u00A0';
+    el.status.classList.toggle('error', !!isError);
+  }
+
+  function toggleListening() {
+    if (isListening) stopListening();
+    else             startListening();
+  }
+
+  // ---------- persistence ----------
+  // LocalStorage carries only preferences (instrument, a4). There's no
+  // volatile runtime state worth restoring — listening always starts stopped
+  // and idles on cold load. Matches t0ck's pattern: persist prefs, not
+  // transient values like the last BPM.
+  function encodePrefs() {
+    return 'inst=' + state.instrument + '&a4=' + state.a4;
+  }
+
+  function decodePrefs(str) {
+    if (!str) return {};
+    const out = {};
+    str.split('&').forEach(function (pair) {
+      const parts = pair.split('=');
+      const k = parts[0], v = parts[1];
+      if (k === 'inst' && PRESETS.hasOwnProperty(v)) out.instrument = v;
+      if (k === 'a4') {
+        const n = parseFloat(v);
+        if (!isNaN(n) && n >= 400 && n <= 480) out.a4 = n;
+      }
+    });
+    return out;
+  }
+
+  function persist() {
+    try { localStorage.setItem(STORAGE_KEY, encodePrefs()); } catch (e) {}
+  }
+
+  function loadPrefs() {
+    let str = '';
+    try { str = localStorage.getItem(STORAGE_KEY) || ''; } catch (e) {}
+    Object.assign(state, decodePrefs(str));
+  }
+
+  // ---------- URL routing ----------
+  // Shareable deep links. Mirrors t0ck's route philosophy.
+  //   t00n.app/guitar           → instrument preset
+  //   t00n.app/guitar/442       → preset + A4 reference
+  //   t00n.app/442/guitar       → order doesn't matter
+  //   t00n.app/432              → chromatic + A4=432
+  //   t00n.app/#guitar/442      → hash fallback for hosts that strip paths
+  // URL overrides localStorage — if someone sends you a link, you see that
+  // tuning, not your last-used one.
+  function parseRoute() {
+    let raw = '';
+    try {
+      raw = (location.pathname || '').replace(/^\/+/, '');
+      if (!raw && location.hash) raw = location.hash.replace(/^#+/, '');
+    } catch (e) { /* sandboxed preview — degrade silently */ }
+
+    raw.split(/[\/]/).filter(Boolean).forEach(function (part) {
+      if (PRESETS.hasOwnProperty(part)) {
+        state.instrument = part;
+        return;
+      }
+      const n = parseFloat(part);
+      if (!isNaN(n) && n >= 400 && n <= 480) state.a4 = n;
+    });
+  }
+
+  // ---------- segments ----------
+  function activateSeg(group, value) {
+    document.querySelectorAll('.segments[data-group="' + group + '"] .seg')
+      .forEach(function (btn) {
+        btn.classList.toggle('active', btn.dataset.value === String(value));
+      });
+  }
+
+  function handleSegmentClick(e) {
+    const btn = e.target.closest('.seg');
+    if (!btn) return;
+    const group = btn.parentElement.dataset.group;
+    const value = btn.dataset.value;
+    if (group === 'inst') {
+      state.instrument = value;
+      activateSeg('inst', value);
+      renderStrings();
+      persist();
+      // If already listening, retune the analyser to match the new preset's
+      // lowest frequency — AnalyserNode.fftSize is writable, no re-init needed.
+      if (analyser) {
+        try { analyser.fftSize = fftSizeForInstrument(value); } catch (e) {}
+      }
+    } else if (group === 'a4') {
+      const n = parseFloat(value);
+      if (!isNaN(n)) {
+        state.a4 = n;
+        activateSeg('a4', value);
+        persist();
+        // Listening loop picks up the new reference on next tick naturally —
+        // note math reads state.a4 each frame, no re-init needed.
+        // The chord-drawer tuning diagram shows Hz values derived from A4,
+        // so refresh it if it's currently visible.
+        if (elChord.modal.classList.contains('open')) {
+          renderTuningDiagram(chordInst);
+        }
+      }
+    } else if (group === 'chord-inst') {
+      setChordInstrument(value);
+    }
+  }
+
+  function syncSegments() {
+    activateSeg('inst', state.instrument);
+    activateSeg('a4', state.a4);
+  }
+
+  // ---------- modal (ported verbatim from t0ck) ----------
+  let lastFocused = null;
+
+  function openModal(modalEl, focusEl) {
+    lastFocused = document.activeElement;
+    document.querySelectorAll('.modal.open').forEach(function (m) {
+      if (m !== modalEl) {
+        m.classList.remove('open');
+        m.setAttribute('aria-hidden', 'true');
+      }
+    });
+    modalEl.classList.add('open');
+    modalEl.setAttribute('aria-hidden', 'false');
+    setTimeout(function () { if (focusEl) focusEl.focus(); }, 50);
+  }
+
+  function closeModal(modalEl) {
+    modalEl.classList.remove('open');
+    modalEl.setAttribute('aria-hidden', 'true');
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+  }
+
+  function openSettings() { openModal(el.modal, el.closeSettings); }
+  function closeSettings() { closeModal(el.modal); }
+  function openHelp()     { openModal(el.helpModal, el.closeHelp); }
+  function closeHelp()    { closeModal(el.helpModal); }
+
+  function anyModalOpen() {
+    return el.modal.classList.contains('open') ||
+           el.helpModal.classList.contains('open') ||
+           elChord.modal.classList.contains('open');
+  }
+
+  function closeAnyModal() {
+    if (el.modal.classList.contains('open'))     closeModal(el.modal);
+    if (el.helpModal.classList.contains('open')) closeModal(el.helpModal);
+    if (elChord.modal.classList.contains('open')) closeModal(elChord.modal);
+  }
+
+  // ---------- iOS speaker keepalive (v09) ----------
+  // Ported verbatim from t0ck v48/v53/v54. Background:
+  //
+  // iOS Safari mutes Web Audio output on the BUILT-IN SPEAKER unless an
+  // HTMLAudioElement is also playing. Headphones/AirPods work fine; only
+  // the speaker route is blocked. Without this workaround, the chord
+  // drawer's tap-a-string and block/strum buttons appear to do nothing
+  // on iPhones — frustrating because all the visual feedback says "tap
+  // registered." This bug burned 13 versions in t0ck before we landed on
+  // the silent-backing-track fix.
+  //
+  // Fix: a near-silent 3-second WAV looping on a hidden <audio> element.
+  // Whenever this element is playing, iOS routes Web Audio to the speaker
+  // too. Primed once on the first user interaction anywhere on the page,
+  // then paused. Resumed only while chord audio is actively playing so
+  // the iOS status-bar "audio playing" indicator doesn't stay lit when
+  // the user isn't using audio (v53). Stop has an 800ms grace period so
+  // rapid play taps don't drop into a silent gap (v54).
+  //
+  // Non-iOS: this module is never called — the chord synth runs straight
+  // through to Web Audio destination, identical to v08 behavior.
+  const iosSpeakerKeepalive = (function () {
+    let audioEl = null;
+    let silentUrl = null;
+    let primed = false;
+
+    function buildSilentWavUrl() {
+      if (silentUrl) return silentUrl;
+      const SR = 22050;
+      const DUR = 3;
+      const samples = SR * DUR;
+      const buffer = new ArrayBuffer(44 + samples * 2);
+      const view = new DataView(buffer);
+      let p = 0;
+      function ws(s) { for (let i = 0; i < s.length; i++) view.setUint8(p++, s.charCodeAt(i)); }
+      function w32(n) { view.setUint32(p, n, true); p += 4; }
+      function w16(n) { view.setUint16(p, n, true); p += 2; }
+      ws('RIFF'); w32(36 + samples * 2); ws('WAVE');
+      ws('fmt '); w32(16); w16(1); w16(1);
+      w32(SR); w32(SR * 2); w16(2); w16(16);
+      ws('data'); w32(samples * 2);
+      const TWO_PI = Math.PI * 2;
+      for (let i = 0; i < samples; i++) {
+        const t = i / SR;
+        const s = Math.sin(TWO_PI * 60 * t) * 0.002;
+        view.setInt16(p, Math.round(s * 0x7FFF), true);
+        p += 2;
+      }
+      silentUrl = URL.createObjectURL(new Blob([buffer], { type: 'audio/wav' }));
+      return silentUrl;
+    }
+
+    function ensureEl() {
+      if (audioEl) return audioEl;
+      audioEl = new Audio();
+      audioEl.setAttribute('playsinline', '');
+      audioEl.loop = true;
+      audioEl.volume = 1;
+      audioEl.src = buildSilentWavUrl();
+      audioEl.load();
+      return audioEl;
+    }
+
+    let stopTimerId = null;
+    const STOP_GRACE_MS = 800;
+
+    return {
+      prime: function () {
+        if (primed) return;
+        primed = true;
+        const a = ensureEl();
+        const p = a.play();
+        if (p && p.then) {
+          p.then(function () {
+            try { a.pause(); } catch (e) {}
+          }).catch(function () {});
+        }
+      },
+      start: function () {
+        if (stopTimerId) {
+          clearTimeout(stopTimerId);
+          stopTimerId = null;
+        }
+        const a = ensureEl();
+        if (a.paused) {
+          const p = a.play();
+          if (p && p.catch) p.catch(function () {});
+        }
+      },
+      stop: function () {
+        if (stopTimerId) clearTimeout(stopTimerId);
+        stopTimerId = setTimeout(function () {
+          if (audioEl) {
+            try { audioEl.pause(); } catch (e) {}
+          }
+          stopTimerId = null;
+        }, STOP_GRACE_MS);
+      }
+    };
   })();
-  </script>
+
+  // Same UA-sniff t0ck uses. iPad on iOS 13+ reports as Mac, so the
+  // maxTouchPoints check catches it. The Web Audio speaker quirk applies
+  // to both phones and iPads.
+  function isIOS() {
+    const ua = navigator.userAgent || '';
+    if (/iPhone|iPad|iPod/.test(ua)) return true;
+    if (/Macintosh/.test(ua) && typeof navigator.maxTouchPoints === 'number' && navigator.maxTouchPoints > 1) return true;
+    return false;
+  }
+
+  // ---------- chord-playback synth (v08) ----------
+  // Plays reference notes through Web Audio when the user taps the play
+  // buttons or a string in the chord drawer. Independent from the mic's
+  // AudioContext so chord playback works whether or not the tuner is
+  // currently listening.
+  //
+  // Tone choice: sawtooth oscillator with a quick attack and exponential
+  // decay envelope, plus a gentle lowpass filter sweep. Sounds plucky and
+  // slightly synthetic — deliberately NOT like a real guitar/uke. The
+  // reference being audibly "synth, not instrument" prevents learners
+  // from confusing the speaker output with their own playing.
+  //
+  // The audio context is created lazily on first user interaction, which
+  // is also what unlocks Web Audio on iOS Safari.
+  let playbackCtx = null;
+  // Track active (oscillator, gain) pairs so we can stop them cleanly when
+  // navigating between chords or closing the drawer. Without this, rapid
+  // taps would pile up overlapping voices and the output would muddle.
+  const activeVoices = [];
+
+  function ensurePlaybackCtx() {
+    if (!playbackCtx) {
+      playbackCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (playbackCtx.state === 'suspended') {
+      // .resume() returns a promise but we don't need to await it — the
+      // first note may glitch slightly but subsequent notes work fine.
+      playbackCtx.resume().catch(function () {});
+    }
+    return playbackCtx;
+  }
+
+  function stopAllVoices() {
+    activeVoices.splice(0).forEach(function (voice) {
+      try {
+        voice.gain.gain.cancelScheduledValues(0);
+        voice.gain.gain.setValueAtTime(0.0001, voice.ctx.currentTime);
+        voice.osc.stop(voice.ctx.currentTime + 0.05);
+      } catch (e) { /* already stopped */ }
+    });
+  }
+
+  // Play a single note at the given frequency, starting at `when` seconds
+  // past now. Returns the note's gain node so callers can chain envelopes.
+  function playNote(freq, when) {
+    const ctx = ensurePlaybackCtx();
+    const start = ctx.currentTime + (when || 0);
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(freq, start);
+
+    filter.type = 'lowpass';
+    // Filter cutoff sweeps from ~bright to ~muted over the note's life,
+    // mimicking the natural high-frequency rolloff of a plucked string.
+    filter.frequency.setValueAtTime(Math.min(freq * 8, 6000), start);
+    filter.frequency.exponentialRampToValueAtTime(Math.max(freq * 2, 400), start + 1.0);
+
+    // Pluck envelope: very fast attack, exponential decay. Peak gain is
+    // kept low (0.18) because chords stack 4-6 voices and we want headroom
+    // to avoid clipping.
+    gain.gain.setValueAtTime(0.0001, start);
+    gain.gain.exponentialRampToValueAtTime(0.18, start + 0.005);
+    gain.gain.exponentialRampToValueAtTime(0.0001, start + 1.4);
+
+    osc.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start(start);
+    osc.stop(start + 1.5);
+
+    const voice = { ctx: ctx, osc: osc, gain: gain };
+    activeVoices.push(voice);
+    osc.addEventListener('ended', function () {
+      const i = activeVoices.indexOf(voice);
+      if (i >= 0) activeVoices.splice(i, 1);
+    });
+
+    return gain;
+  }
+
+  // Compute the playable frequencies for a chord: for each string, if the
+  // fret is >= 0, calculate the actual sounding pitch; if -1 (muted), skip.
+  // Returns array of {freq, stringIndex} so callers can stagger-strum or
+  // play individual strings.
+  function chordFrequencies(chord, strings) {
+    const out = [];
+    for (let s = 0; s < strings.length; s++) {
+      const fret = chord.frets[s];
+      if (fret < 0) continue;
+      const baseMidi = noteStringToMidi(strings[s]);
+      if (baseMidi === null) continue;
+      const midi = baseMidi + fret;
+      const freq = state.a4 * Math.pow(2, (midi - 69) / 12);
+      out.push({ freq: freq, stringIndex: s });
+    }
+    return out;
+  }
+
+  // (v09) Note-decay duration matches the envelope set in playNote() —
+  // 1.4s plus a small buffer. The keepalive's silent track must remain
+  // playing for at least this long after the LAST scheduled note fires;
+  // otherwise iOS pauses the speaker route mid-note and the tail clips.
+  const NOTE_DECAY_S = 1.5;
+
+  function playChord(chord, strings, mode) {
+    stopAllVoices();
+    // (v09) iOS speaker route: ensure the silent backing track is running
+    // before Web Audio fires. On non-iOS, isIOS() returns false and these
+    // calls are skipped — same code path as v08.
+    if (isIOS()) iosSpeakerKeepalive.start();
+    const voices = chordFrequencies(chord, strings);
+    // Strum: 30ms between strings, low-pitch first (= thickest string =
+    // typical down-strum direction on guitar/uke). Block: simultaneous.
+    const stagger = mode === 'strum' ? 0.03 : 0;
+    voices.forEach(function (v, i) {
+      playNote(v.freq, i * stagger);
+    });
+    // Schedule the silent track to pause AFTER the last note finishes
+    // decaying. Calling stop() too early cuts off the tail on iOS
+    // speakers. Total time = last-stagger + decay + small buffer. The
+    // keepalive's own STOP_GRACE_MS (800ms) absorbs rapid re-taps; the
+    // setTimeout below absorbs single-tap-then-let-it-ring.
+    if (isIOS()) {
+      const lastNoteAt = Math.max(0, voices.length - 1) * stagger;
+      const totalMs = (lastNoteAt + NOTE_DECAY_S) * 1000;
+      setTimeout(function () { iosSpeakerKeepalive.stop(); }, totalMs);
+    }
+  }
+
+  function playSingleString(chord, strings, stringIdx) {
+    stopAllVoices();
+    const fret = chord.frets[stringIdx];
+    if (fret < 0) return;   // muted string — nothing to play
+    if (isIOS()) iosSpeakerKeepalive.start();
+    const baseMidi = noteStringToMidi(strings[stringIdx]);
+    if (baseMidi === null) return;
+    const midi = baseMidi + fret;
+    const freq = state.a4 * Math.pow(2, (midi - 69) / 12);
+    playNote(freq, 0);
+    if (isIOS()) {
+      setTimeout(function () { iosSpeakerKeepalive.stop(); }, NOTE_DECAY_S * 1000);
+    }
+  }
+
+  // ---------- chord drawer (v03) ----------
+  // Chord data for the four fretted instruments in the drawer. Each preset
+  // lists strings in the SAME order as the tuner's PRESETS array (lowest
+  // pitch first, left-to-right). Each chord:
+  //   frets:   number per string. -1 = muted (don't play), 0 = open.
+  //   fingers: number per string. 0 = no finger (open or muted), 1=index,
+  //            2=middle, 3=ring, 4=pinky. Used to render a number inside
+  //            each fretted dot.
+  //
+  // Shapes validated against published chord charts (banjochords.net,
+  // protuningtool.com, jodyhughesmusic.com for banjo; mandolincafe.com,
+  // nativeground.com for mandolin two-finger shapes; standard open
+  // positions for guitar and ukulele).
+  //
+  // Banjo note: shown as 4-string diagrams (4-3-2-1 = DGBD). The 5th-string
+  // drone (G4) is assumed open on chords that accept it (G, C, Em) and
+  // silent on chords that don't (D7, A). Annotated below the grid.
+  const CHORD_DATA = {
+    guitar: {
+      tuning: ['E2', 'A2', 'D3', 'G3', 'B3', 'E4'],
+      tuningLabel: 'EADGBE · standard',
+      chords: [
+        { name: 'G',  frets: [3, 2, 0, 0, 0, 3], fingers: [2, 1, 0, 0, 0, 3] },
+        { name: 'C',  frets: [-1, 3, 2, 0, 1, 0], fingers: [0, 3, 2, 0, 1, 0] },
+        { name: 'D',  frets: [-1, -1, 0, 2, 3, 2], fingers: [0, 0, 0, 1, 3, 2] },
+        { name: 'Em', frets: [0, 2, 2, 0, 0, 0], fingers: [0, 2, 3, 0, 0, 0] },
+        { name: 'Am', frets: [-1, 0, 2, 2, 1, 0], fingers: [0, 0, 2, 3, 1, 0] },
+      ],
+    },
+    ukulele: {
+      tuning: ['G4', 'C4', 'E4', 'A4'],
+      tuningLabel: 'GCEA · standard (high-G reentrant)',
+      chords: [
+        { name: 'C',  frets: [0, 0, 0, 3], fingers: [0, 0, 0, 3] },
+        { name: 'G',  frets: [0, 2, 3, 2], fingers: [0, 2, 3, 1] },
+        { name: 'F',  frets: [2, 0, 1, 0], fingers: [2, 0, 1, 0] },
+        { name: 'Am', frets: [2, 0, 0, 0], fingers: [2, 0, 0, 0] },
+        { name: 'C7', frets: [0, 0, 0, 1], fingers: [0, 0, 0, 1] },
+      ],
+    },
+    mandolin: {
+      tuning: ['G3', 'D4', 'A4', 'E5'],
+      tuningLabel: 'GDAE · same as violin',
+      chords: [
+        { name: 'G',  frets: [0, 0, 2, 3], fingers: [0, 0, 1, 3] },
+        { name: 'C',  frets: [0, 2, 3, 0], fingers: [0, 1, 2, 0] },
+        { name: 'D',  frets: [2, 0, 0, 2], fingers: [1, 0, 0, 2] },
+        { name: 'Em', frets: [0, 2, 2, 0], fingers: [0, 1, 2, 0] },
+        { name: 'Am', frets: [2, 2, 3, 0], fingers: [1, 2, 3, 0] },
+      ],
+    },
+    banjo: {
+      // Drawer shows 4 long strings (DGBD, strings 4-3-2-1) per chord-chart
+      // convention. 5th string drone (G4) annotated separately.
+      tuning: ['D3', 'G3', 'B3', 'D4'],
+      tuningLabel: 'DGBD · open G tuning (+ high-G drone on 5th string)',
+      droneNote: 'Rings open on G, C, Em. Mute on D7 and A.',
+      chords: [
+        { name: 'G',  frets: [0, 0, 0, 0], fingers: [0, 0, 0, 0] },
+        { name: 'C',  frets: [0, 0, 1, 2], fingers: [0, 0, 1, 3] },
+        { name: 'D7', frets: [0, 2, 1, 0], fingers: [0, 2, 1, 0] },
+        { name: 'Em', frets: [0, 0, 0, 2], fingers: [0, 0, 0, 2] },
+        { name: 'A',  frets: [2, 2, 2, 2], fingers: [1, 1, 1, 1] }, // barre
+      ],
+    },
+  };
+
+  const elChord = {
+    modal:       document.getElementById('chordsModal'),
+    openBtn:     document.getElementById('openChords'),
+    closeBtn:    document.getElementById('closeChords'),
+    tuningLabel: document.getElementById('tuningLabel'),
+    tuningDiag:  document.getElementById('tuningDiagram'),
+    chordGrid:   document.getElementById('chordGrid'),
+    footerNote:  document.getElementById('chordFooterNote'),
+  };
+
+  // Which instrument is currently shown in the drawer. Defaults to the
+  // tuner's current preset if it's one of the 4 charted instruments;
+  // otherwise falls back to guitar (most-recognized baseline).
+  let chordInst = 'guitar';
+
+  // Reference frequencies for the tuning diagram display. Uses the
+  // user's current A4 reference so 432/442/444 users see consistent numbers.
+  function noteToFreq(noteStr) {
+    const midi = noteStringToMidi(noteStr);
+    if (midi === null) return 0;
+    return state.a4 * Math.pow(2, (midi - 69) / 12);
+  }
+
+  function renderTuningDiagram(inst) {
+    const data = CHORD_DATA[inst];
+    elChord.tuningLabel.textContent = 'Tuning · ' + data.tuningLabel;
+
+    // Tuning is stored low-pitch-first (E2 first for guitar). For the
+    // fretted instruments here, lowest pitch IS the thickest string, and
+    // we want THICKEST on top — so draw in stored order without reversing.
+    // (A reentrant uke chart would break this assumption; revisit if/when
+    // that ships.)
+    const stringsTopToBottom = data.tuning.slice();
+    const numStrings = stringsTopToBottom.length;
+
+    // Layout. Headstock zone is a separate column to the LEFT of each
+    // string row, not stacked above/below the string line. This keeps the
+    // string itself unobstructed and the label readable.
+    //
+    // Each string row gets STRING_GAP vertical pixels. The string line is
+    // centered in that row. The label column to the left renders the note
+    // (top half) + Hz (bottom half), both within the row's vertical extent
+    // so labels never collide with adjacent strings.
+    const W = 320;
+    const HEAD_W = 76;        // label column width
+    const BOARD_X = HEAD_W;
+    const BOARD_W = W - HEAD_W - 12;
+    const STRING_GAP = 30;    // tall enough for 2-line label between strings
+    const PAD_TOP = 22;       // room for banjo drone above the top string
+    const PAD_BOTTOM = 16;    // room for bottom string's Hz label below
+    const H = PAD_TOP + (numStrings - 1) * STRING_GAP + PAD_BOTTOM;
+    const NUT_X = BOARD_X + 2;
+    const FRETS_TO_SHOW = 4;
+    const FRET_W = (BOARD_W - 4) / FRETS_TO_SHOW;
+
+    let svg = '<svg class="fretboard" viewBox="0 0 ' + W + ' ' + H + '" width="100%" height="' + H + '" role="img" aria-label="' + inst + ' tuning diagram">';
+
+    // Fret lines (faint, vertical). Drawn first so strings render on top.
+    for (let f = 1; f <= FRETS_TO_SHOW; f++) {
+      const x = NUT_X + f * FRET_W;
+      svg += '<line class="fret" x1="' + x + '" y1="' + PAD_TOP + '" x2="' + x + '" y2="' + (PAD_TOP + (numStrings - 1) * STRING_GAP) + '" />';
+    }
+
+    // Nut (extends a few px above/below the outermost strings).
+    svg += '<line class="nut" x1="' + NUT_X + '" y1="' + (PAD_TOP - 3) + '" x2="' + NUT_X + '" y2="' + (PAD_TOP + (numStrings - 1) * STRING_GAP + 3) + '" />';
+
+    // Strings + per-string headstock label. Thickness goes from thick (top,
+    // lowest pitch) to thin (bottom). Visual cue matches what you see when
+    // holding the instrument.
+    stringsTopToBottom.forEach(function (note, i) {
+      const y = PAD_TOP + i * STRING_GAP;
+      const thickness = 3.4 - (i / Math.max(1, numStrings - 1)) * 2.4;
+      svg += '<line class="string-line" x1="' + NUT_X + '" y1="' + y + '" x2="' + (BOARD_X + BOARD_W) + '" y2="' + y + '" stroke-width="' + thickness.toFixed(2) + '" />';
+
+      // Tuning peg.
+      const pegX = 10;
+      svg += '<line class="peg-line" x1="' + pegX + '" y1="' + y + '" x2="' + NUT_X + '" y2="' + y + '" />';
+      svg += '<circle class="peg" cx="' + pegX + '" cy="' + y + '" r="3.5" />';
+
+      // Headstock label, two stacked lines. Note name above the string,
+      // Hz below — but BOTH live in the label column, NOT over the string
+      // line. The string line passes through the gap between them. Using
+      // dominant-baseline=alphabetic (default) for predictable cross-
+      // browser positioning.
+      const labelX = pegX + 8;
+      const hz = noteToFreq(note);
+      const stringNum = numStrings - i;
+      // Note name: baseline 3px above the string line. With 11px font, top
+      // of glyph lands ~13px above string — clear of any adjacent string.
+      svg += '<text class="nut-label" x="' + labelX + '" y="' + (y - 3) + '">' + note + '</text>';
+      // Hz: baseline 11px below the string line. With 9px font, top of glyph
+      // lands ~3px below string — readable, doesn't run into next string.
+      svg += '<text class="nut-hz" x="' + labelX + '" y="' + (y + 11) + '">' + hz.toFixed(1) + ' Hz</text>';
+      // String number: small grey numeral at right edge of label column,
+      // vertically centered on the string line.
+      svg += '<text class="string-num" x="' + (HEAD_W - 4) + '" y="' + (y + 3) + '" text-anchor="end">' + stringNum + '</text>';
+    });
+
+    // Banjo special case: 5th string is a drone. Render as a short mint-
+    // colored segment from past fret 4 to the bridge end, with its own peg
+    // floating above the top string. Mirrors how the instrument actually
+    // looks: drone string emerges from the side of the neck partway down.
+    // Label sits ABOVE the drone line (between drone and SVG top edge), so
+    // it stays inside the canvas regardless of drone position.
+    if (inst === 'banjo') {
+      const droneY = PAD_TOP - 13;
+      const droneStartX = NUT_X + FRET_W * 4 + 4;
+      const droneHz = noteToFreq('G4');
+      svg += '<line class="drone-line" x1="' + droneStartX + '" y1="' + droneY + '" x2="' + (BOARD_X + BOARD_W) + '" y2="' + droneY + '" stroke-width="2" />';
+      svg += '<circle class="drone-peg" cx="' + (droneStartX - 4) + '" cy="' + droneY + '" r="3.5" />';
+      // Label: positioned to the LEFT of the drone segment so it doesn't
+      // run off the right edge. Anchored end-aligned so longer labels grow
+      // backward into the headstock zone.
+      svg += '<text class="nut-hz" x="' + (droneStartX - 12) + '" y="' + (droneY + 3) + '" text-anchor="end">drone · G4 · ' + droneHz.toFixed(1) + ' Hz</text>';
+    }
+
+    svg += '</svg>';
+    elChord.tuningDiag.innerHTML = svg;
+  }
+
+  // SVG chord-diagram renderer. Given a chord object + number of strings,
+  // returns an <svg> string.
+  // Layout constants tuned to fit 4-6 strings in a ~110px-wide card without
+  // feeling cramped:
+  //   stringSpacing: horizontal distance between strings
+  //   fretSpacing:   vertical distance between frets
+  //   padTop:        space for O/X markers above the nut
+  //   padBottom:     space for string labels below the frets
+  function renderChordSVG(chord, strings) {
+    const numStrings = strings.length;
+    const FRETS = 4;
+    // (v07) Internal grid bumped from 14×16 to 18×20 to match the bigger
+    // 2-col layout. The SVG scales to fill its card via CSS, but starting
+    // with a larger viewBox means strokes/dots/text don't get proportionally
+    // thinner when CSS scales the SVG up — they're encoded at meaningful
+    // sizes relative to the diagram itself.
+    const SS = 18;   // string spacing
+    const FS = 20;   // fret spacing
+    const PAD_LEFT = 12;
+    const PAD_TOP = 18;
+    const PAD_BOTTOM = 18;
+    const gridW = (numStrings - 1) * SS;
+    const gridH = FRETS * FS;
+    const W = gridW + PAD_LEFT * 2;
+    const H = PAD_TOP + gridH + PAD_BOTTOM;
+
+    let svg = '<svg class="chord-svg" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet" aria-hidden="true">';
+
+    // Nut (top line, thicker). Horizontal line spanning all strings.
+    svg += '<line class="nut" x1="' + PAD_LEFT + '" y1="' + PAD_TOP + '" x2="' + (PAD_LEFT + gridW) + '" y2="' + PAD_TOP + '" stroke-width="2.5" />';
+
+    // Fret lines (horizontal), below the nut.
+    for (let f = 1; f <= FRETS; f++) {
+      const y = PAD_TOP + f * FS;
+      svg += '<line class="fret-line" x1="' + PAD_LEFT + '" y1="' + y + '" x2="' + (PAD_LEFT + gridW) + '" y2="' + y + '" stroke-width="1" />';
+    }
+
+    // String lines (vertical), from just below the nut to the bottom fret.
+    for (let s = 0; s < numStrings; s++) {
+      const x = PAD_LEFT + s * SS;
+      svg += '<line class="string-line" x1="' + x + '" y1="' + PAD_TOP + '" x2="' + x + '" y2="' + (PAD_TOP + gridH) + '" stroke-width="1" />';
+    }
+
+    // O / X markers above the nut, and dots for fretted positions.
+    for (let s = 0; s < numStrings; s++) {
+      const fret = chord.frets[s];
+      const finger = chord.fingers ? chord.fingers[s] : 0;
+      const x = PAD_LEFT + s * SS;
+      const markerY = PAD_TOP - 8;
+
+      if (fret === -1) {
+        // Muted string — X above the nut.
+        svg += '<line class="mute-x" x1="' + (x - 4) + '" y1="' + (markerY - 4) + '" x2="' + (x + 4) + '" y2="' + (markerY + 4) + '" stroke-width="1.6" />';
+        svg += '<line class="mute-x" x1="' + (x - 4) + '" y1="' + (markerY + 4) + '" x2="' + (x + 4) + '" y2="' + (markerY - 4) + '" stroke-width="1.6" />';
+      } else if (fret === 0) {
+        // Open string — O above the nut.
+        svg += '<circle class="open-o" cx="' + x + '" cy="' + markerY + '" r="4" stroke-width="1.5" />';
+      } else {
+        // Fretted — filled dot centered in the fret space.
+        const y = PAD_TOP + (fret - 0.5) * FS;
+        svg += '<circle class="dot" cx="' + x + '" cy="' + y + '" r="7" />';
+        if (finger > 0) {
+          // Finger number inside the dot, white text for contrast on --ink dots.
+          svg += '<text class="dot-text" x="' + x + '" y="' + (y + 3.5) + '" text-anchor="middle">' + finger + '</text>';
+        }
+      }
+    }
+
+    // String labels below the grid (just letter, no octave — the tuning
+    // diagram above carries the full note names).
+    for (let s = 0; s < numStrings; s++) {
+      const x = PAD_LEFT + s * SS;
+      const y = PAD_TOP + gridH + 12;
+      const note = strings[s].match(/^([A-G]#?)/)[1];
+      svg += '<text class="string-label" x="' + x + '" y="' + y + '" text-anchor="middle">' + note + '</text>';
+    }
+
+    // (v08) Invisible hit-rectangles for tap-to-play. One per playable
+    // string (skipped for muted strings — nothing to play). Each rect
+    // covers the full string column from above the nut to below the
+    // grid, so the tap target is generous (~SS-wide × full diagram-tall)
+    // even though the visible string is only 1px wide. Rendered LAST so
+    // it sits on top of everything in click-z-order. data-string-idx
+    // tells the click handler which string was tapped.
+    for (let s = 0; s < numStrings; s++) {
+      if (chord.frets[s] === -1) continue;
+      const x = PAD_LEFT + s * SS;
+      svg += '<rect class="string-hit" data-string-idx="' + s + '" ' +
+             'x="' + (x - SS / 2) + '" y="' + (PAD_TOP - 14) + '" ' +
+             'width="' + SS + '" height="' + (gridH + 22) + '" ' +
+             'fill="transparent" />';
+    }
+
+    svg += '</svg>';
+    return svg;
+  }
+
+  function renderChordGrid(inst) {
+    const data = CHORD_DATA[inst];
+    const cards = data.chords.map(function (chord, idx) {
+      return '' +
+        '<div class="chord-card" data-chord-idx="' + idx + '">' +
+          '<div class="chord-name">' + chord.name + '</div>' +
+          renderChordSVG(chord, data.tuning) +
+          // Two playback controls per card. The icons are intentionally
+          // small and quiet — they sit BELOW the diagram so the chord
+          // remains the dominant element. Strum = stagger; block = block.
+          '<div class="chord-actions">' +
+            '<button class="chord-btn" data-play="block" aria-label="Play ' + chord.name + ' chord (block)" title="Play block">' +
+              // Lucide-style "play" triangle.
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+                '<polygon points="6 4 20 12 6 20 6 4" fill="currentColor" stroke="none"/>' +
+              '</svg>' +
+              '<span>block</span>' +
+            '</button>' +
+            '<button class="chord-btn" data-play="strum" aria-label="Play ' + chord.name + ' chord (strum)" title="Strum">' +
+              // Strum icon: descending wavy line — visually "sweep down."
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+                '<path d="M4 7 L20 7"/><path d="M6 12 L20 12"/><path d="M8 17 L20 17"/>' +
+                '<path d="M14 4 L20 8" />' +
+              '</svg>' +
+              '<span>strum</span>' +
+            '</button>' +
+          '</div>' +
+        '</div>';
+    }).join('');
+
+    elChord.chordGrid.innerHTML = cards;
+
+    // Footer-note slot doubles as the drone annotation on banjo (where the
+    // 5th-string drone behavior needs to be called out). Other instruments
+    // get a hint pointing to the new tap-to-play interaction.
+    if (data.droneNote) {
+      elChord.footerNote.innerHTML =
+        '<strong class="footer-note-title">5th-string drone</strong>' +
+        '<span class="footer-note-body">' + data.droneNote + '</span>';
+    } else {
+      elChord.footerNote.innerHTML =
+        '<strong class="footer-note-title">Tap to hear</strong>' +
+        '<span class="footer-note-body">Tap a string to hear it. Use block / strum to hear the whole chord.</span>';
+    }
+  }
+
+  function setChordInstrument(inst) {
+    if (!CHORD_DATA[inst]) return;
+    stopAllVoices();
+    chordInst = inst;
+    activateSeg('chord-inst', inst);
+    renderTuningDiagram(inst);
+    renderChordGrid(inst);
+  }
+
+  function openChords() {
+    // Default to current tuner preset if it's one of the charted instruments;
+    // otherwise keep whatever was last viewed in the drawer (or guitar on
+    // first open).
+    if (CHORD_DATA[state.instrument]) {
+      setChordInstrument(state.instrument);
+    } else {
+      setChordInstrument(chordInst);
+    }
+    openModal(elChord.modal, elChord.closeBtn);
+  }
+  function closeChords() {
+    stopAllVoices();
+    closeModal(elChord.modal);
+  }
+
+
+  // Initial state follows the OS preference. Toggle flips for this session
+  // only — nothing persists. On reload we match OS again. If the OS pref
+  // changes mid-session AND the user hasn't manually toggled, we follow.
+  const THEME_COLORS = {
+    light: { bg: '#F9F9F9', ink: '#034D32' },
+    dark:  { bg: '#0a1612', ink: '#E4F3EE' }
+  };
+  let themeUserOverride = false;
+
+  function applyTheme(mode) {
+    const c = THEME_COLORS[mode] || THEME_COLORS.light;
+    document.documentElement.setAttribute('data-theme', mode);
+    // Per the Claude-preview dark-mode rule: set bg/color inline on BOTH
+    // documentElement and body, not just via CSS variables.
+    document.documentElement.style.background = c.bg;
+    document.documentElement.style.color = c.ink;
+    document.body.style.background = c.bg;
+    document.body.style.color = c.ink;
+    // Icon swap is handled by CSS via html[data-theme]; only the aria-label
+    // needs updating here so screen readers announce the correct action.
+    el.themeToggle.setAttribute(
+      'aria-label',
+      mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+    );
+  }
+
+  function toggleTheme() {
+    themeUserOverride = true;
+    const current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  }
+
+  function initTheme() {
+    const mql = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+    applyTheme(mql && mql.matches ? 'dark' : 'light');
+    if (mql && mql.addEventListener) {
+      mql.addEventListener('change', function (e) {
+        if (!themeUserOverride) applyTheme(e.matches ? 'dark' : 'light');
+      });
+    }
+  }
+
+  // ---------- events ----------
+  el.play.addEventListener('click', toggleListening);
+  el.openSettings.addEventListener('click', openSettings);
+  el.closeSettings.addEventListener('click', closeSettings);
+  el.openHelp.addEventListener('click', openHelp);
+  el.closeHelp.addEventListener('click', closeHelp);
+  elChord.openBtn.addEventListener('click', openChords);
+  elChord.closeBtn.addEventListener('click', closeChords);
+  el.themeToggle.addEventListener('click', toggleTheme);
+
+  // (v08) Chord-grid delegation: one listener on the grid container handles
+  // both play-button clicks and tap-a-string-to-play interactions. Reading
+  // the chord index from the card and the string index from the rect lets
+  // us avoid attaching dozens of handlers per render.
+  elChord.chordGrid.addEventListener('click', function (e) {
+    const card = e.target.closest('.chord-card');
+    if (!card) return;
+    const data = CHORD_DATA[chordInst];
+    if (!data) return;
+    const chordIdx = parseInt(card.dataset.chordIdx, 10);
+    const chord = data.chords[chordIdx];
+    if (!chord) return;
+
+    // Play button (block or strum).
+    const btn = e.target.closest('.chord-btn');
+    if (btn) {
+      playChord(chord, data.tuning, btn.dataset.play);
+      return;
+    }
+
+    // Tap on a string hit-rect — play just that string.
+    const hit = e.target.closest('.string-hit');
+    if (hit) {
+      const stringIdx = parseInt(hit.dataset.stringIdx, 10);
+      playSingleString(chord, data.tuning, stringIdx);
+      return;
+    }
+  });
+
+  document.querySelectorAll('.segments').forEach(function (group) {
+    group.addEventListener('click', handleSegmentClick);
+  });
+
+  // Keyboard shortcuts. Esc always works and closes any open modal. Other
+  // shortcuts only fire when no modal is open and no text input is focused,
+  // so typing in a future input field doesn't toggle listening mid-keystroke.
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      if (anyModalOpen()) { e.preventDefault(); closeAnyModal(); }
+      return;
+    }
+    const tag = (e.target && e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea') return;
+    if (anyModalOpen()) return;
+
+    if (e.key === ' ')                              { e.preventDefault(); toggleListening(); }
+    else if (e.key === 's' || e.key === 'S')        { e.preventDefault(); openSettings(); }
+    else if (e.key === 'c' || e.key === 'C')        { e.preventDefault(); openChords(); }
+    else if (e.key === '?')                         { e.preventDefault(); openHelp(); }
+  });
+
+  // Release mic cleanly on navigation / tab close. Matches t0ck's cleanup
+  // philosophy — no lingering device indicators.
+  window.addEventListener('pagehide', function () {
+    if (isListening) stopListening();
+  });
+
+  // ---------- init ----------
+  loadPrefs();   // localStorage first…
+  parseRoute();  // …then let URL override…
+  initTheme();
+  syncSegments();
+  renderStrings();
+  renderIdle();
+
+  // (v09) On iOS, prime the silent-backing-track keepalive on the very
+  // first user interaction anywhere on the page (not waiting for the
+  // chord drawer specifically). By the time the user opens Chords and
+  // taps a string, the speaker route is already established. Listeners
+  // remove themselves after first fire — one-shot. Pattern ported from
+  // t0ck v48.
+  if (isIOS()) {
+    const primeOnFirstTouch = function () {
+      iosSpeakerKeepalive.prime();
+      window.removeEventListener('pointerdown', primeOnFirstTouch, true);
+      window.removeEventListener('touchstart', primeOnFirstTouch, true);
+      window.removeEventListener('keydown', primeOnFirstTouch, true);
+    };
+    window.addEventListener('pointerdown', primeOnFirstTouch, true);
+    window.addEventListener('touchstart', primeOnFirstTouch, true);
+    window.addEventListener('keydown', primeOnFirstTouch, true);
+  }
+})();
+</script>
 </body>
 </html>
